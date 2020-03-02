@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% load static%}
+ <!-- <script src="{% static '/pace/pace.js' %}"></script> 
+
+<link href="{% static '/pace/themes/blue/pace-theme-loading-bar.css' %}" rel="stylesheet" /> -->
+
+<style>
+ .center-div
+ {
+	      margin: 0 auto;
+		           width: 100px; 
+ }
+
+  .footer {                                                                                                                         position: fixed;                                                                                              left: 0;                                                                                                                bottom: 0;                                                                                                              width: 100%;                                                                                                           background-color: AliceBlue;                                                                                             text-align: center;
+  }
+#ingredienser {
+  font-size:25px;
+}
+/* Tooltip container */
+.tooltipxx {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltipxx .tooltiptextxo {
+  visibility: hidden;
+  width: max-content;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipxx:hover .tooltiptextxo {
+  visibility: visible;
+}
+
+
+</style>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Mfri</title>
+
+  <!-- Bootstrap core CSS -->
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
+
+</head>
+
+
+<body onload="setForm()">
+
+  <!-- Page Content -->
+  <div class="container center-div">
+    <div class="row">
+      <div class="col-lg-12" >
+        <h1 class="mt-5">Opskrifter</h1>
+  </br>
+  <button class="btn btn-link" id="btnSwitch" onclick="changeForm()">Søg efter navn på opskrifter</button>
+</br>
+  <form method="post" name="recipeForm" id="ingForm">
+    {% csrf_token %}
+  <input class="form-control" list="ingredienser" name="searchField" id="searchField" placeholder="Indtast ingrediens (F.eks. kylling)" autocomplete="off" required/>  
+  </br>
+  <button type="submit" class="btn btn-outline-secondary">Søg</button>
+  </form>
+<form method="POST" name="recName" id="recForm" style="display:none;" >
+  {% csrf_token %}
+  <input class="form-control" name="recField" id="recField" placeholder="Søg navn på opskrift" required/>  
+</br>
+  <button type="submit" class="btn btn-outline-secondary">Søg</button>
+</form>
+</br></br>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+      </div>
+   	 
+      <form method='post' name='sessionForm'>
+        {% csrf_token %}
+      {%for ingre in ingreList%}
+        
+      {%if forloop.last%}
+      <button class='btn btn-primary' type="submit" name='ingre' value='{{ingre}}'>{{ingre}}</button>
+      {%else%}
+      <button  class='btn btn-primary' type="submit" name='ingre' value='{{ingre}}'>{{ingre}}</button> -
+      {%endif%}
+
+
+      {%endfor%}
+    </form>
+    </div>
+  </p>  
+  	{%if dict%}
+
+	Antal opskrifter: {{results}} 
+	{%endif%}
+	</p>
+  </br>
+  <table id='recList'>
+    <tr>
+    {% if dict %}
+      <th onclick="sortTable(0)">Opskrift navn </th>
+    {%endif%}
+    </tr>
+    {% for k in dict %}
+    <tr>
+    <td> <a href='{{k.link}}'>{{k.name}}</a> </td> <td style="padding-left: 20px;"><div class="tooltipxx">Antal ingredienser: 
+      {{k.ingredient_set.all|length}}
+        <span class="tooltiptextxo">{%for x in k.ingredient_set.all %}{%if x.name in ingreList|join:","%} <strong style="text-decoration-color: green;">  {{x.name}} </strong> {%else%} <strong>{{x.name}}</strong> {%endif%} </br> {%endfor%}</span>
+      </div>
+    </td>
+  </tr>
+    {%endfor%}
+  </table>
+  <table>
+  {%for i in recipeList%}
+  <tr>
+   <td> {{i.name}} </td> <td style="padding-left: 20px;"> <a href='{{i.link}}'>Link</a> </td>
+  </tr>
+   {%endfor%}
+</table>
+
+  </div>
+  
+
+  <datalist id="ingredienser">
+    <option value="Acaipulver">
+      <option value="Agurk">
+      <option value="Amaretto">
+      <option value="Ananas">
+      <option value="And">
+      <option value="Appelsin">
+      <option value="Artiskok">
+      <option value="Asparges">
+      <option value="Aubergine">
+      <option value="Avokado">
+      <option value="Bacon">
+      <option value="Bagepulver">
+      <option value="Baileys">
+      <option value="Balsamico">
+      <option value="Banan">
+      <option value="Basilikum">
+      <option value="Bearnaiseessens">
+      <option value="Blomkål">
+      <option value="Blåbær">
+      <option value="Broccoli">
+      <option value="Brombær">
+      <option value="Brun farin">
+      <option value="Butternut squash">
+      <option value="Bønnespirer">
+      <option value="Cashewnødder">
+      <option value="Champignon">
+      <option value="Cheddar">
+      <option value="Chiafrø">
+      <option value="Chili">
+      <option value="Chilisauce">
+      <option value="Chokolade">
+      <option value="Chorizo">
+      <option value="Citron">
+      <option value="Citronmelisse">
+      <option value="Citronsaft">
+      <option value="Cocktailpølser">
+      <option value="Creme fraiche">
+      <option value="Culotte">
+      <option value="Dadler">
+      <option value="Danskvand">
+      <option value="Digestive">
+      <option value="Dijonsennep">
+      <option value="Dild">
+      <option value="Dils">
+      <option value="Dulce de leche">
+      <option value="Durumhvedemel">
+      <option value="Edamamebønner">
+      <option value="Eddike">
+      <option value="Estragon">
+      <option value="Fasan">
+      <option value="Ferskner">
+      <option value="Feta">
+      <option value="Filodej">
+      <option value="Fisk">
+      <option value="Fiskesauce">
+      <option value="Flanksteak">
+      <option value="Flormelis">
+      <option value="Flæsk">
+      <option value="Flødeost">
+      <option value="Forårsløg">
+      <option value="Forårsrulledej">
+      <option value="Frosne bananer">
+      <option value="Garam masala">
+      <option value="Gin">
+      <option value="Glukosesirup">
+      <option value="Gorgonzola">
+      <option value="Granatæble">
+      <option value="Grillost">
+      <option value="Gråand">
+      <option value="Græskar">
+      <option value="Græskarkerner">
+      <option value="Græsk yoghurt">
+      <option value="Grønkål">
+      <option value="Grønne bønner">
+      <option value="Grønne linser">
+      <option value="Gulerødder">
+      <option value="Gurkemeje">
+      <option value="Gær">
+      <option value="Hakkede tomater">
+      <option value="Hakket kylling">
+      <option value="Hakket oksekød">
+      <option value="Hakket svinekød">
+      <option value="Halloumi">
+      <option value="Hasselnødder">
+      <option value="Havregryn">
+      <option value="Hindbær">
+      <option value="Hokkaido">
+      <option value="Honning">
+      <option value="Hummus">
+      <option value="Husblas">
+      <option value="Hvedemel">
+      <option value="Hvid chokolade">
+      <option value="Hvide bønner">
+      <option value="Hvidkål">
+      <option value="Hvidløg">
+      <option value="Hvid peber">
+      <option value="Hvidvin">
+      <option value="Hvidvinseddike">
+      <option value="Hyldebær">
+      <option value="Hytteost">
+      <option value="Hørfrø">
+      <option value="Ingefær">
+      <option value="Jalapeños">
+      <option value="Jordbær">
+      <option value="Jordskokker">
+      <option value="Kaffe">
+      <option value="Kaffefløde">
+      <option value="Kaffir limeblade">
+      <option value="Kakaopulver">
+      <option value="Kalkun">
+      <option value="Kalvekæber">
+      <option value="Kalveschnitzler">
+      <option value="Kanel">
+      <option value="Kapers">
+      <option value="Karamel">
+      <option value="Karamelchokolade">
+      <option value="Kardemomme">
+      <option value="Karry">
+      <option value="Karrypasta">
+      <option value="Kartofler">
+      <option value="Kidney bønner">
+      <option value="Kikærter">
+      <option value="Kirsebærsauce">
+      <option value="Knoldselleri">
+      <option value="Knækkede hvedekerner">
+      <option value="Knækkede rugkerner">
+      <option value="Kokosmel">
+      <option value="Kokosmælk">
+      <option value="Kondenseret mælk">
+      <option value="Koriander">
+      <option value="Koteletter">
+      <option value="Kylling">
+      <option value="Kyllingefilet">
+      <option value="Kærnemælk">
+      <option value="Ladyfingers">
+      <option value="Lakridspulver">
+      <option value="Laks">
+      <option value="Lam">
+      <option value="Lammekrone">
+      <option value="Lammekølle">
+      <option value="Lasagneplader">
+      <option value="Lime">
+      <option value="Linser">
+      <option value="Løg">
+      <option value="Madlavningsfløde">
+      <option value="Majs">
+      <option value="Majsstivelse">
+      <option value="Mandler">
+      <option value="Mango">
+      <option value="Marcipan">
+      <option value="Marokko">
+      <option value="Mascarpone">
+      <option value="Mayonaise">
+      <option value="Mozzarella">
+      <option value="Muskatnød">
+      <option value="Mynte">
+      <option value="Mælk">
+      <option value="Nakkekoteletter">
+      <option value="Natron">
+      <option value="Nougat">
+      <option value="Nyretapper">
+      <option value="Nødder">
+      <option value="Oksehaler">
+      <option value="Oksekød">
+      <option value="Oksemørbrad">
+      <option value="Olie">
+      <option value="Oliven">
+      <option value="Olivenolie">
+      <option value="Olivenollie">
+      <option value="Oregano">
+      <option value="Ost">
+      <option value="Palmesukker">
+      <option value="Panang karrypasta">
+      <option value="Paprika">
+      <option value="Parma skinke">
+      <option value="Parmaskinke">
+      <option value="Parmesan">
+      <option value="Passionsfrugt">
+      <option value="Pasta">
+      <option value="Pastinak">
+      <option value="Peanut Butter">
+      <option value="Peanuts">
+      <option value="Peberfrugt">
+      <option value="Peberrod">
+      <option value="Perlesukker">
+      <option value="Persille">
+      <option value="Pesto">
+      <option value="Piskefløde">
+      <option value="Pistaciekerner">
+      <option value="Pofiber">
+      <option value="Porrer">
+      <option value="Proteinpulver">
+      <option value="Purløg">
+      <option value="Pærer">
+      <option value="Pølser">
+      <option value="Quinoa">
+      <option value="Rabarber">
+      <option value="Radiser">
+      <option value="Rejer">
+      <option value="Ricotta">
+      <option value="Ris">
+      <option value="Risnudler">
+      <option value="Rispapir">
+      <option value="Rom">
+      <option value="Rosenkål">
+      <option value="Rosiner">
+      <option value="Rosmarin">
+      <option value="Ruccola">
+      <option value="Rugbrød">
+      <option value="Rugmel">
+      <option value="Rødbeder">
+      <option value="Røde linser">
+      <option value="Rødkål">
+      <option value="Rødløg">
+      <option value="Rødspætte">
+      <option value="Rødvin">
+      <option value="Røget laks">
+      <option value="Rørsukker">
+      <option value="Salt">
+      <option value="Sennep">
+      <option value="Serrano Skinke">
+      <option value="Sesamfrø">
+      <option value="Sirup">
+      <option value="Skalotteløg">
+      <option value="Skinke">
+      <option value="Skumfiduser">
+      <option value="Skyr">
+      <option value="Smør">
+      <option value="Solsikkefrø">
+      <option value="Solsikkekerner">
+      <option value="Soltørrede tomater">
+      <option value="Soya">
+      <option value="Spidskommen">
+      <option value="Spidskål">
+      <option value="spinat">
+      <option value="Squash">
+      <option value="Stjerneanis">
+      <option value="Sukker">
+      <option value="Sukkerærter">
+      <option value="Svinekam">
+      <option value="Svinekæber">
+      <option value="Svinemørbrad">
+      <option value="Søde kartofler">
+      <option value="Sødmælk">
+      <option value="Tahin">
+      <option value="Tamarind">
+      <option value="Timian">
+      <option value="Toastbrød">
+      <option value="Tomat">
+      <option value="Tomatpuré">
+      <option value="Tonic">
+      <option value="Torsk">
+      <option value="Tranebær">
+      <option value="Tun">
+      <option value="Valnødder">
+      <option value="Vanilje">
+      <option value="Vaniljesukker">
+      <option value="Varmrøget laks">
+      <option value="Vildand">
+      <option value="Vindruer">
+      <option value="Whisky">
+      <option value="Yoghurt">
+      <option value="Æble">
+      <option value="Æbler">
+      <option value="Æg">
+      <option value="Æggeblommer">
+      <option value="Æggehvider">
+      <option value="Ærter">
+      <option value="Øl">
+      <option value="Ørred">
+      <option value="Østerssauce">
+
+      </datalist>
+
+
+
+<script type='text/javascript'>
+
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
+var formChanged = false;
+
+function changeForm(){
+  console.log("hej");
+  var ingForm = document.getElementById("ingForm");
+  var recForm = document.getElementById("recForm");
+  var btn = document.getElementById("btnSwitch");
+  if(formChanged==false){
+    recForm.style.display = "block";
+    ingForm.style.display = "none";
+    setCookie("whatForm","ing",1);
+    btn.innerText = "Søg på ingredienser";
+    
+    formChanged=true;
+  }else{
+    recForm.style.display = "none";
+    ingForm.style.display = "block";
+    btn.innerText = "Søg efter navn på opskrifter";
+    setCookie("whatForm","rec",1);
+    formChanged=false;
+  }
+}
+
+function setForm(){
+  var x = getCookie("whatForm");
+  console.log(x);
+  if(x=="ing"){
+    changeForm();
+  }
+}
+
+
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("recList");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc";
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>

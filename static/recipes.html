@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <script src="pace/pace.js"></script>
+ <link href="pace/themes/red/pace-theme-loading-bar.css" rel="stylesheet" />
+
+<style>
+ .center-div
+ {
+	      margin: 0 auto;
+		           width: 100px; 
+ }
+
+  .footer {                                                                                                                         position: fixed;                                                                                              left: 0;                                                                                                                bottom: 0;                                                                                                              width: 100%;                                                                                                           background-color: AliceBlue;                                                                                             text-align: center;
+  }
+
+</style>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Mfri</title>
+
+  <!-- Bootstrap core CSS -->
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
+
+</head>
+
+<body>
+
+  <!-- Page Content -->
+  <div class="container center-div">
+    <div class="row">
+      <div class="col-lg-12" >
+        <h1 class="mt-5">Opskrifter</h1>
+  </br>
+  <form method="post" name="recipeForm">
+    {% csrf_token %}
+  <input class="form-control" name="searchField" id="searchField" placeholder="Indtast ingrediens (F.eks. kylling)"/>  
+  
+  </form>
+</br></br>
+      </div>
+   	 
+      <form method='post' name='sessionForm'>
+        {% csrf_token %}
+      {%for ingre in ingreList%}
+        
+      {%if forloop.last%}
+      <button class='btn btn-primary' type="submit" name='ingre' value='{{ingre}}'>{{ingre}}</button>
+      {%else%}
+      <button  class='btn btn-primary' type="submit" name='ingre' value='{{ingre}}'>{{ingre}}</button> -
+      {%endif%}
+
+
+      {%endfor%}
+    </form>
+    </div>
+  </p>  
+  	{%if dict%}
+
+	Antal opskrifter: {{results}} 
+  
+	{%endif%}
+	</p>
+  </br>
+    {% for k, v in dict.items %}
+    {{k}} - <a href='{{v}}'>Link</a></br>
+     
+    {%endfor%}
+  </div>
+  
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.slim.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+
+
+
+
+</script>
+
+
+</body>
+
+</html>

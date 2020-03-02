@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<style>
+ .center-div
+ {
+	 margin: 0 auto;
+	width: 100px; 
+ }
+
+  .footer {
+	  position: fixed;
+	  left: 0;
+	  bottom: 0;
+	  width: 100%;
+	  background-color: AliceBlue;
+	  text-align: center;
+  }
+
+
+  .abstractDiv {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  margin-top: 20px;
+}
+
+ /* The Modal (background) */
+ .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 80%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 
+
+
+
+
+
+
+
+
+</style>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Mfri</title>
+
+  <!-- Bootstrap core CSS -->
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="/home/">Marius Frilund</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home/">Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Portfolio
+		    <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+		  <a class="nav-link" href="/associates/">Associates
+		</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container center-div">
+    <div class="row">
+      <div class="col-lg-12" >
+
+
+        <div type="button" id="myModal" class="modal">
+
+          <!-- Modal content -->
+            <div class="modal-content">
+             <span class="close">&times;</span>
+             <p style="text-align: center;"><img width="300" src="{% static 'images/Screenshot_1579878012.png' %}">
+                   <img width="300" src="{% static 'images/Screenshot_1579876461.png' %}"> 
+                    <img width="300" src="{% static 'images/Screenshot_1579877854.png' %}">
+                    <img width="300" src="{% static 'images/Screenshot_1579877829.png' %}">
+                    
+                
+                
+                </p>
+             </div>
+    
+      </div>
+
+	      <h1 class="mt-5"> University projects:</h1>
+	</br> 
+	<h3> Robotics </h3>
+	<br>
+  <ul> <li>1st semester: Automatisk mine lokalisering - <a href="{% static 'reports/AutonomousMineDetectionRobot.pdf' %}">Download</a>  - <button class="btn btn-link"  style="padding-bottom: 10px;" onclick="onAbstractClick('1')">Abstract</button>
+    
+    <div id="divAbstract1" style="display:none">
+      Landmines and improvised explosive devices (IEDs) continue to injure and or kill thousands of people every year as well as hinder development in a variety of countries.
+       The aim of the project is to come up with a solution capable of reducing or eliminating the impact of landmines and IEDs as well as simulate the concept of the solution with a prototype.
+        In order to do so, the problems of Landmines and IEDs are analyzed. The analysis describes the two types of explosives and the impacts of them as well as methods and existing solutions used to cope with landmines and IEDs today.
+         Based on the analysis, the problem is delimited to only landmines and pressure plate IEDs (PPIEDs), and requirements are listed for the solution.
+         Four different solution proposals are then presented, analyzed and finally combined into one final solution.
+          An autonomous, hovercraft based, mine detector is proposed as solution.
+           The hovercraft utilizes a metal detector and ground penetrating radar (GPR) as sensors for detection of landmines and PPIEDs and creates a map with locations of the mines in order to ease the demining process.
+            Finally, by use of the Turtlebot and ROS(Robot Operating System), the project succeeds in creating a prototype simulating core parts of the said solution.
+
+    </br>
+  </br>
+
+    </div>
+
+  </li>
+		<li>2nd semester: Robotic Automation of the Assembling Process of Rotors and Stators in the ALPHA2 Pum... - 
+      <a href="{% static 'reports/Robotic_Automation__RobB117.pdf' %}">Download</a>   - <button class="btn btn-link"  style="padding-bottom: 10px;" onclick="onAbstractClick('2')">Abstract</button>
+    
+      <div id="divAbstract2" style="display:none">
+        Based  on  an  inquiry  from  the  Danish   pump   manufacturing   company Grundfos  regarding  an  assembly  operation  in  their  ALPHA2  productionline, 
+         this  project  investigates  the  possibilities of automatically assembling a rotor  and  stator  by  the  use  of  one  or more  robotic  manipulators,
+         while  fulfilling a certain set of requirements.  In short,  the rotors must be moved from a  conveyor  to  a  magnetizing  unit  and then from the magnetizing
+          unit onto a second outlet conveyor with stators to create one assembled unit. A unit must be  produced  every  fourth  second  and approximately  every  50th magnetized rotor
+            must  be  quality  checked.    Ultimately, this investigation should result in  the  design  of  a  robot  system  capable of completing this assembly operation.
+              In order to design such a system, four cycles are proposed and analysed thoroughly  to  find  the  most  efficient cycle  and  a  gripper  for  the  manipulator capable
+               of handling the rotors is designed in the SolidWorks CAD program.  Multiple tests on a KUKA KR6R700  sixx  concluded  that  two  of  the four proposed cycles were able
+                to complete  the  assembly  operation  within four seconds and the most efficient cycle was achieved by moving two rotors at  once  by  use  of  a  double  gripper  as end-effector on the manipulator.
+              </br>
+            </br>
+      </div>  </li>
+		<li>3rd semseter: Aiding upper limb rehabilitation of hemiparetic patients using a robotic manipulator contr...  - 
+      <a href="{% static 'reports/Manipulating_the_surroundings_Group_366_Robotics.pdf' %}">Download</a>  - <button class="btn btn-link"  style="padding-bottom: 10px;" onclick="onAbstractClick('3')">Abstract</button>
+    
+      <div id="divAbstract3" style="display:none">
+        Strokes are one of the leading causes of disability in the entire world, often causing of hemiparesis.
+         In order to address this problem and improve the quality of life for hemiparetic patients with a partially automated solution, a fundamental analysis of the problem was conducted.
+          Based on the analysis a rehabilitation game, for patients with upper extremity disabilities, consisting of a robotic manipulator and a commercially available sensing device is proposed.
+           In order to develop this game, kinematics of the manipulator are calculated and a control system with a PID controller is implemented to control movements of the manipulator in cartesian space.
+            A prototype of the game was built and tested in relation to specific requirements in order to evaluate the product. The prototype fulfilled all the requirements, but it was not without flaws.
+             The final prototype adequately demonstrated the concept of the game even though it never was tested on hemiparetic patients.
+            </br>
+          </br>
+      </div>  </li>
+	<li>4th semester: Unavailable due to signing a non-disclosure agreement</li>
+	</ul>   
+	
+	<br>
+	<h3> Computer Engineering </h3>
+	<br>
+	<ul>
+		<li>1st semester: Determining the Best Camera Angle of Deafblind Interaction - <a href="{% static 'reports/p1_b117.pdf' %}">Download</a>  - <button class="btn btn-link" style="padding-bottom: 10px;" onclick="onAbstractClick('4')">Abstract</button>
+    
+      <div id="divAbstract4" style="display:none">
+        This paper investigates and proposes asolution, in a proof of concept state, for a problem encountered by The Centerof Deafblindness and Hearing Loss in Aalborg.
+          The problem mainly consists of  an  analyst  wanting  to  prove  that if deafblind students perform adaptive physical activity together,  rather than separately, they will thrive.
+           To prove this hypothesis, the analyst needs proof in the form of recordings. The proposed solutionis a system consisting of multiple cameras, a server, and an interface to analyze the recordings.
+            However, only a proof of concept meant to incentivize further development is developed.
+             This proof of concept shows that it is possible to transfer footage to a server using RTSP, transfer recordings to a client using SMB, and provide an interface to analyze recordings using the Qt toolkit.
+              It was not, however, tested whether the quality of a given camera angle using OpenCV and Caffe deep learning framework could be correctly evaluated in a production environment.
+               Since the proof of concept is incomplete, suggestions for further work are also proposed.
+  
+</br>
+</br>
+      </div> </li>
+	<li>2nd semester: Zero Hunger - Redistribution of Food Waste to Combat Global Hunger - <a href="{% static 'reports/P2___food_distribution.pdf' %}">Download</a>   - <button class="btn btn-link" style="padding-bottom: 10px;" onclick="onAbstractClick('5')">Abstract</button>
+    
+    <div id="divAbstract5" style="display:none">
+      This project attempts to create an online platform for food donations, such that food donors,and food receivers are able to establish communication and arrange food donations.
+       The target food donors are mainly wholesalers, supermarkets, or directly from the manufacturers, which donates food waste to charitable organizations that redistribute the donated foods to people in need.
+        By using food waste, it is possible to not only reduce the number of starving people, but it would also be a sustainable solution, that would be beneficial tothe environment in terms of greenhouse gas emission.
+         Furthermore, a reduction in food waste might also be favorable to the economy of each country.
+          The proposed solution works like a marketplace on a website, where both donors and receivers are granted access.
+           The system has been tested on a homogeneous user group that found the system’s usability to be good, while the usefulness of the system is inconclusive.
+</br>
+</br>
+    </div> </li>
+	<li>3rd semester: Access Control Vulnerabilities, Cryptography, and Improvements - <a href="{% static 'reports/b1-201_report_2019-12-18_d9f07c8.pdf' %}">Download</a>   - <button class="btn btn-link" style="padding-bottom: 10px;" onclick="onAbstractClick('6')">Abstract</button>
+    
+    <div id="divAbstract6" style="display:none">
+      In this paper, issues with access control
+      and vulnerabilities at Aalborg University
+      are examined. Whilst doing this examination, vulnerabilities in various web services related to the access control system
+      at Aalborg University were discovered. A
+      proof of concept for a new access control
+      system was also developed.
+      This proof of concept attempts to avoid
+      trusting PICC scanners, which would
+      allow for third party services to use said
+      scanners safely. Additionally, the proof
+      of concept uses unique cryptographic keys
+      on each PICC, which reduces the risk of
+      duplicated PICCs. This proof of concept
+      consists of a MIFARE Classic 1K PICC,
+      a client-side application for scanners, and
+      a server-side API and -database that the
+      client-side application uses.
+      It was found that Crypto1 can be compromised by a malicous scanner, but using
+      unique keys on each PICC partially mitigates PICC duplication.
+      
+</br>
+</br>
+    </div> </li>
+
+	</ul>
+	<hr>
+	</br>
+	<h1> Other projects: </h1>
+	</br>
+	<h3>Mobile applications </h3>
+	</br>	
+	<ul style="padding-bottom: 100px;">
+		<li>EsportsRe -<button id="myBtn" style="padding-bottom: 10px;" class="btn btn-link">preview</button>  </li>
+		<li>Guess the capital - <a href="https://play.google.com/store/apps/details?id=guess.the.capital">See here</a> </li>
+		
+
+
+  </ul>
+  
+
+
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
+  <script src="{% static '/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+	<script>
+		// Get the modal
+		var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+	  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+	  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	  if (event.target == modal) {
+		      modal.style.display = "none";
+		    }
+}
+
+function onAbstractClick(idNr){
+  var findDiv = document.getElementById("divAbstract"+idNr);
+  if (findDiv.style.display === "none") {
+    findDiv.style.display = "block";
+  } else {
+    findDiv.style.display = "none";
+  }
+  console.log(idNr)
+}
+
+</script>
+
+
+</body>
+<div class="footer">
+           <p>E-mail: mhense15@student.aau.dk                                                                                      <br><a href="https://gitlab.com/giggitygoat">GitLab</a> <a href="https://github.com/giggitygoat">GitHub</a>
+	   <a href="https://www.linkedin.com/in/marius-frilund-hensel-5636a21a1/">LinkedIn</a>
+	   </p>  
+
+
+</div>
+</html>
