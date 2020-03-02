@@ -28,6 +28,7 @@ urlpatterns = [
     path('home/', views.home),
     path('portfolio/', views.portfolio),
     path('about/', views.about),
+    path('lykkehjul/', repViews.lykkehjul),
     path('opskrifter/', repViews.recipes),
     path('scraper/', repViews.scrapeMumum),
     ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  

@@ -228,6 +228,14 @@ def scrapeMumum(request):
 
 
     return render(request, "scrapemum.html",{})
+
+
+def lykkehjul(request):
+
+    return render(request, "lykkehjul/lykkehjul.html",{})
+
+
+
 """
     for href in linkFinder:
         req = scrapeSite(href['href'])
