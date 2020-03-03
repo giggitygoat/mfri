@@ -166,8 +166,11 @@ def heleMummum(url):
     requestx = scrapeSite(url)
 
     vegSoup = bs4.BeautifulSoup(requestx.decode('utf-8'))
-    linkFinder = vegSoup.find("div",{"class":"section mute-heading section--expanded teaser-deck-d"})
-    #print(linkFinder)
+    #linkFinder = vegSoup.find("div",{"class":"section mute-heading section--expanded teaser-deck-d"})
+    section mute-heading section--expanded teaser-deck-d section--expanded
+    linkFinder = vegSoup.find("div",{"class":"section mute-heading section--expanded teaser-deck-d section--expanded"})
+
+    print(linkFinder)
     scraper = []
     try:
         scraper= linkFinder.find_all("div",{"class":"col-xs-6 col-sm-4 col-md-3"})
@@ -224,8 +227,8 @@ def scrapeMumum(request):
     if request.method=="POST":
         antalSider = 156
         url= 'https://dr.dk/mad/opskrift/'
-        heleMummum(url)
-        for i in range(0, 30):
+        #heleMummum(url)
+        for i in range(2, 30):
             stringBuilder = url+"?page="+str(i)
             print(stringBuilder)
             heleMummum(stringBuilder)
