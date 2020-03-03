@@ -167,7 +167,7 @@ def heleMummum(url):
 
     vegSoup = bs4.BeautifulSoup(requestx.decode('utf-8'))
     linkFinder = vegSoup.find("div",{"class":"section mute-heading section--expanded teaser-deck-d"})
-    print(linkFinder)
+    #print(linkFinder)
     scraper = []
     try:
         scraper= linkFinder.find_all("div",{"class":"col-xs-6 col-sm-4 col-md-3"})
@@ -179,7 +179,7 @@ def heleMummum(url):
             newLink = each.find_all("a")[0]['href']
         except:
             pass
-        print(newLink)
+        #print(newLink)
         if not '#' in newLink:
             ingScrape = scrapeSite("https://dr.dk"+newLink)
             beautify = bs4.BeautifulSoup(ingScrape.decode('utf-8', 'ignore')) 
