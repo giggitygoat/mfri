@@ -166,11 +166,11 @@ def heleMummum(url):
     requestx = scrapeSite(url)
 
     vegSoup = bs4.BeautifulSoup(requestx.decode('utf-8'))
-    linkFinder = vegSoup.find("div",{"class":"azindex"})
+    linkFinder = vegSoup.find("div",{"class":"section mute-heading section--expanded teaser-deck-d"})
     print(linkFinder)
     scraper = []
     try:
-        scraper= linkFinder.find_all("li")
+        scraper= linkFinder.find_all("div",{"class":"col-xs-6 col-sm-4 col-md-3"})
     except Exception as e:
         print(str(e))
     #print(scraper)
@@ -184,11 +184,11 @@ def heleMummum(url):
             ingScrape = scrapeSite(newLink)
             beautify = bs4.BeautifulSoup(ingScrape.decode('utf-8', 'ignore')) 
 
-            title = beautify.find('h2').get_text()
+            title = beautify.find('h1').get_text()
             print('title: ',title)
             ingList = []
             try:
-                ingList = beautify.find("ul",{"class":"wprm-recipe-ingredients"}).find_all("li")
+                ingList = beautify.find("ul",{"class":"recipe-ingredients col-xs-12 col-sm-4"}).find_all("li")
             except Exception as e:
                 print(str(e))
             """
@@ -221,7 +221,7 @@ def scrapeMumum(request):
 
     if request.method=="POST":
         antalSider = 156
-        url= 'https://gastromand.dk/opskrifter/'
+        url= 'https://dr.dk/mad/opskrift/'
         heleMummum(url)
 
         
