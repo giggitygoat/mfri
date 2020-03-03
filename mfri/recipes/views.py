@@ -188,7 +188,7 @@ def heleMummum(url):
             print('title: ',title)
             ingList = []
             try:
-                ingList = beautify.find("div",{"class":"recipe-ingredients col-xs-12 col-sm-4"}).find_all("li")
+                ingList = beautify.find("div",{"class":"recipe-ingredients col-xs-12 col-sm-4"}).find_all("span",{"class":"recipe-ingredients__ingredient-instruction"})
             except Exception as e:
                 print(str(e))
             """
