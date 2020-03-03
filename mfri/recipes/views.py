@@ -181,7 +181,7 @@ def heleMummum(url):
             pass
         print(newLink)
         if not '#' in newLink:
-            ingScrape = scrapeSite(newLink)
+            ingScrape = scrapeSite("https://dr.dk"+newLink)
             beautify = bs4.BeautifulSoup(ingScrape.decode('utf-8', 'ignore')) 
 
             title = beautify.find('h1').get_text()
