@@ -196,24 +196,24 @@ def heleMummum(url):
                 ingList = beautify.find("div",{"class":"recipe-ingredients col-xs-12 col-sm-4"}).find_all("span",{"class":"recipe-ingredients__ingredient-instruction"})
             except Exception as e:
                 print(str(e))
-            """
+            
             reci = recMod.Recipe(name=title,link=newLinkPlus)
             
             try:
                 reci.save()
             except Exception as e:
                 print(str(e))
-            """
+            
             for every in ingList:
                 ingredient = every.get_text()
                 print('ingre: ', ingredient)
-                """
-                #ingr = recMod.Ingredient(name=ingredient, recipe=reci)
+                
+                ingr = recMod.Ingredient(name=ingredient, recipe=reci)
                 try:
-                    #ingr.save()
+                    ingr.save()
                 except Exception as e: 
                     print(str(e))
-                """
+                
 
             
 
@@ -228,7 +228,7 @@ def scrapeMumum(request):
         antalSider = 156
         url= 'https://dr.dk/mad/opskrift/'
         #heleMummum(url)
-        for i in range(2, 30):
+        for i in range(2, 15):
             stringBuilder = url+"?page="+str(i)
             print(stringBuilder)
             heleMummum(stringBuilder)
