@@ -184,7 +184,7 @@ def heleMummum(url):
             ingScrape = scrapeSite("https://dr.dk"+newLink)
             beautify = bs4.BeautifulSoup(ingScrape.decode('utf-8', 'ignore')) 
 
-            title = beautify.find_all('h1')[1]
+            title = beautify.find_all('h1')[1].get_text()
             print('title: ',title)
             ingList = []
             try:
