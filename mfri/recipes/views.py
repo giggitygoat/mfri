@@ -181,7 +181,8 @@ def heleMummum(url):
             pass
         #print(newLink)
         if not '#' in newLink:
-            ingScrape = scrapeSite("https://dr.dk"+newLink)
+            newLinkPlus = "https://dr.dk"+newLink
+            ingScrape = scrapeSite(newLinkPlus)
             beautify = bs4.BeautifulSoup(ingScrape.decode('utf-8', 'ignore')) 
 
             title = beautify.find_all('h1')[1].get_text()
@@ -192,7 +193,7 @@ def heleMummum(url):
             except Exception as e:
                 print(str(e))
             """
-            reci = recMod.Recipe(name=title,link=newLink)
+            reci = recMod.Recipe(name=title,link=newLinkPlus)
             
             try:
                 reci.save()
@@ -224,7 +225,9 @@ def scrapeMumum(request):
         url= 'https://dr.dk/mad/opskrift/'
         heleMummum(url)
         for i in range(0, 30):
-            heleMummum(url+"?page="+str(i))
+            stringBuilder = url+"?page="+str(i)
+            print(stringBuilder)
+            heleMummum(stringBuilder)
 
         
 
