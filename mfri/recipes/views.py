@@ -167,7 +167,7 @@ def heleMummum(url):
 
     vegSoup = bs4.BeautifulSoup(requestx.decode('utf-8'))
     #linkFinder = vegSoup.find("div",{"class":"section mute-heading section--expanded teaser-deck-d"})
-    section mute-heading section--expanded teaser-deck-d section--expanded
+    #section mute-heading section--expanded teaser-deck-d section--expanded
     linkFinder = vegSoup.find("div",{"class":"section mute-heading section--expanded teaser-deck-d section--expanded"})
 
     print(linkFinder)
