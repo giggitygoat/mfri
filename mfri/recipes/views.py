@@ -228,7 +228,7 @@ def scrapeMumum(request):
         antalSider = 156
         url= 'https://dr.dk/mad/opskrift/'
         #heleMummum(url)
-        for i in range(90,105):
+        for i in range(105,120):
             stringBuilder = url+"?page="+str(i)
             print(stringBuilder)
             heleMummum(stringBuilder)
