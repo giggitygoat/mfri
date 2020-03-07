@@ -49,8 +49,8 @@ def recipeViewSet(request):
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
-        #snippets = Recipe.objects.all()
-        serializer = RecipeSerializer(many=True)
+        snippets = Recipe.objects.all()
+        serializer = RecipeSerializer(snippets, many=True)
         return JsonResponse(serializer.data, safe=False)       
      
 
