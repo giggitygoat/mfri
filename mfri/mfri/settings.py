@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['vmi335798.contaboserver.net','www.mfri.dk','mfri.dk','193.164.
 
 INSTALLED_APPS = [
     'recipes',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
