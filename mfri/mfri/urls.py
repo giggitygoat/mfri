@@ -46,6 +46,6 @@ urlpatterns = [
     path('lykkehjul/', repViews.lykkehjul),
     path('opskrifter/', repViews.recipes),
     path('scraper/', repViews.scrapeMumum),
-    path(r'^', include(router.urls)),
-    path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api/', include(router.urls)),
+    path('api2/', include('rest_framework.urls', namespace='rest_framework'))
     ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  
