@@ -98,23 +98,27 @@ def tester(request, ingreList, ok):
 
         print("HVORDAN")
         #print(len(filterList))
-        for every in filterList:
-            ingreds = every.ingredient_set.all().values_list('name', flat=True)
-        
-            counter=0
+        request.session['ingre'] = ingreList
+        if len(ingreList)==1:
+            for every in filterList:
+                ingreds = every.ingredient_set.all().values_list('name', flat=True)
+            
+                counter=0
 
-            for ingreObj in ingreList:
+                for ingreObj in ingreList:
+                    
+                    if any(ingreObj.lower() in s for s in ingreds):
+                        counter+=1
+                    
+                if counter>=len(ingreList):
+                    multipleFilterList.append(every)
                 
-                if any(ingreObj.lower() in s for s in ingreds):
-                    counter+=1
-                   
-            if counter>=len(ingreList):
-                multipleFilterList.append(every)
-              
-        if len(multipleFilterList)<=1:
-            print('jeg returnede her')
-            return render(request, "recipes.html", {'dict':'', 'ingreList':ingreList}) 
-    request.session['ingre'] = ingreList
+            if len(multipleFilterList)<=1:
+                print('jeg returnede her')
+                return render(request, "recipes.html", {'dict':'', 'ingreList':ingreList}) 
+    
+        else:
+            return render(request, "recipes.html", {'dict':filterList,'results':len(filterList),'ingreList':ingreList}) 
     #print("HEEER",multipleFilterList)  
     #print(multipleFilterList)  
     if len(multipleFilterList)>=1:
