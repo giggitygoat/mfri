@@ -58,7 +58,6 @@ def scraperMain(url):
         link.append(href['href'])
 
 def tester(request, ingreList, ok):
-    startTime = time.time()
     multipleFilterList =[]
     name = ''
 
@@ -86,7 +85,12 @@ def tester(request, ingreList, ok):
 
     else:
         firstIngredient = ingreList[0].lower()
+        startTime = time.time()
+
         filterList = recMod.Recipe.objects.filter(ingredient__name__icontains=firstIngredient).order_by('name').prefetch_related('ingredient_set').distinct('name')
+        
+        
+
         #print(len(filterList))
         for every in filterList:
             ingreds = every.ingredient_set.all().values_list('name', flat=True)
@@ -100,7 +104,8 @@ def tester(request, ingreList, ok):
                    
             if counter>=len(ingreList):
                 multipleFilterList.append(every)
-                
+        endTime = time.time()
+        print(endTime-startTime)        
         if len(multipleFilterList)<=1:
             print('jeg returnede her')
             return render(request, "recipes.html", {'dict':'', 'ingreList':ingreList}) 
@@ -117,8 +122,7 @@ def tester(request, ingreList, ok):
         except:
             pass
     """
-    endTime = time.time()
-    print(endTime-startTime)
+    
     return render(request, "recipes.html", {'dict':filterList,'results':len(filterList),'ingreList':ingreList}) 
 
 def recipes(request):
