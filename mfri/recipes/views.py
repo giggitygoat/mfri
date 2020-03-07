@@ -89,7 +89,9 @@ def tester(request, ingreList, ok):
 
         filterList = recMod.Recipe.objects.filter(ingredient__name__icontains=firstIngredient).order_by('name').prefetch_related('ingredient_set').distinct('name')
         
-        
+        if len(ingreList)==1:
+            return render(request, "recipes.html", {'dict':filterList,'results':len(filterList),'ingreList':ingreList}) 
+
 
         #print(len(filterList))
         for every in filterList:
