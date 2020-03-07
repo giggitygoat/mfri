@@ -140,6 +140,7 @@
    {%endfor%}
 </table>
 
+<button name="saltknap" onclick="saltQuery()">SALT KNAP</button>
   </div>
   
 
@@ -418,7 +419,14 @@
 
       </datalist>
 
-
+<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+      
+function saltQuery(){
+$.get('https://mfri.dk/api/recipes', function(data,status){
+  console.log(`${data}`)
+});
+}
+</script>
 
 <script type='text/javascript'>
 
@@ -477,6 +485,7 @@ function setForm(){
     changeForm();
   }
 }
+
 
 
 function sortTable(n) {
