@@ -54,7 +54,7 @@ class recipesViewSet(viewsets.ModelViewSet):
 
 """                                        # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'recipes', recipeViewSet)
+router.register(r'recipes', recipeViewSet, basename='recipes')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
