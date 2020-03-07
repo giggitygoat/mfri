@@ -53,7 +53,7 @@ def scraperMain(url):
             #ingredient = each.get_text()
             #ingr = recMod.Ingredient(name=ingredient, recipe=reci)
             #ingr.save()
-            #print('ingre: ', ingredient)
+            print('ingre:')
         
         link.append(href['href'])
 
