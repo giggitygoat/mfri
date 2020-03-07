@@ -49,7 +49,7 @@ def recipeViewSet(request):
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
-        snippets = Recipe.objects.filter(ingredient__name__icontains='salt')
+        snippets = Recipe.objects.filter(ingredient__name__icontains='salt').order_by('name').distinct('name')
         serializer = RecipeSerializer(snippets, many=True)
         return JsonResponse(serializer.data, safe=False)       
      
