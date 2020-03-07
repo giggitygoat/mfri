@@ -37,12 +37,8 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
 class recipeViewSet(viewsets.ViewSet):
-    """
-    A simple ViewSet for listing or retrieving users.
-    """
-    def list(self, request):
-        serializer_class = RecipeSerializer
-        return Response(serializer_class.data)
+    serializer_class = RecipeSerializer
+    queryset = Recipe.objects.all()
 
 
 """                          # ViewSets define the view behavior.
