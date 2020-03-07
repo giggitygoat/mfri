@@ -37,8 +37,13 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
 class recipeViewSet(viewsets.ViewSet):
-    serializer_class = RecipeSerializer
-    queryset = Recipe.objects.all()
+
+    def list(self, request):
+        queryset = Recipe.objects.all()
+        serializer = RecipeSerializer(queryset, many=True)
+        return Response(serializer.data)
+       
+     
 
 
 """                          # ViewSets define the view behavior.
@@ -48,7 +53,7 @@ class recipesViewSet(viewsets.ModelViewSet):
 
 """                                        # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register('recipes', recipeViewSet)
+router.register(r'recipes', recipeViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
