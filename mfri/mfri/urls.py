@@ -22,17 +22,26 @@ from recipes.models import Recipe
 from django.conf.urls.static import static  
 from rest_framework import routers, serializers, viewsets
 
-class RecipeSerializer(serializers.HyperlinkedModelSerializer):
+
+
+class IngredientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Ingredient 
+        fields = ['name']
+
+class RecipeSerializer(serializers.ModelSerializer):
+    ingredient = IngredientSerializer(many=True, read_only=True)
     class Meta:
         model = Recipe
-        fields = ['name','link']
+        fields = ['name','link','ingredient']
 
-                            # ViewSets define the view behavior.
+
+"""                          # ViewSets define the view behavior.
 class recipesViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
 
-                                        # Routers provide an easy way of automatically determining the URL conf.
+"""                                        # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'recipes', recipesViewSet)
 
