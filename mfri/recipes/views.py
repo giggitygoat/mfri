@@ -4,6 +4,7 @@ from recipes import models as recMod
 import webbrowser, bs4, sys, requests, time
 import numpy as np
 import operator
+import time
 from functools import reduce
 from django.db.models import Prefetch
 from django.contrib import messages
@@ -52,11 +53,12 @@ def scraperMain(url):
             #ingredient = each.get_text()
             #ingr = recMod.Ingredient(name=ingredient, recipe=reci)
             #ingr.save()
-            print('ingre: ', ingredient)
+            #print('ingre: ', ingredient)
         
         link.append(href['href'])
 
 def tester(request, ingreList, ok):
+    startTime = time.time()
     multipleFilterList =[]
     name = ''
 
@@ -85,7 +87,7 @@ def tester(request, ingreList, ok):
     else:
         firstIngredient = ingreList[0].lower()
         filterList = recMod.Recipe.objects.filter(ingredient__name__icontains=firstIngredient).order_by('name').prefetch_related('ingredient_set').distinct('name')
-        print(len(filterList))
+        #print(len(filterList))
         for every in filterList:
             ingreds = every.ingredient_set.all().values_list('name', flat=True)
         
@@ -115,7 +117,8 @@ def tester(request, ingreList, ok):
         except:
             pass
     """
-    
+    endTime = time.time()
+    print(endTime-startTime)
     return render(request, "recipes.html", {'dict':filterList,'results':len(filterList),'ingreList':ingreList}) 
 
 def recipes(request):
