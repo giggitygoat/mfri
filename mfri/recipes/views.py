@@ -92,8 +92,9 @@ def tester(request, ingreList, ok):
         if len(ingreList)==1:
             print("her")
             return render(request, "recipes.html", {'dict':filterList,'results':len(filterList),'ingreList':ingreList}) 
+            
 
-
+        print("HVORDAN")
         #print(len(filterList))
         for every in filterList:
             ingreds = every.ingredient_set.all().values_list('name', flat=True)
