@@ -120,7 +120,6 @@
     {% if dict %}
       <th onclick="sortTable(0)">Opskrift navn </th>
     {%endif%}
-    {%cache 500 dicta%}
     </tr>
     {% for k in dict %}
     <tr>
@@ -139,7 +138,7 @@
   </tr>
    {%endfor%}
 </table>
-{%endcache%}
+
 <button name="saltknap" onclick="saltQuery()">SALT KNAP</button>
 
 <table class="saltDiv">
