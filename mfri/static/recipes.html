@@ -108,13 +108,15 @@
     </form>
     </div>
   </p>  
-  	{%if dict%}
-
+  
+    {%if dict%}
+    
 	Antal opskrifter: {{results}} 
 	{%endif%}
 	</p>
   </br>
-  
+  {%load cache%}
+  {% cache 500 dict %}
   <table id='recList'>
     <tr>
     {% if dict %}
@@ -137,6 +139,7 @@
    <td> {{i.name}} </td> <td style="padding-left: 20px;"> <a href='{{i.link}}'>Link</a> </td>
   </tr>
    {%endfor%}
+   {% endcache %}
 </table>
 
 <button name="saltknap" onclick="saltQuery()">SALT KNAP</button>
