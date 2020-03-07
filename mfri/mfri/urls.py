@@ -61,8 +61,8 @@ class recipesViewSet(viewsets.ModelViewSet):
     serializer_class = RecipeSerializer
 
 """                                        # Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
-router.register(r'recipes', recipeViewSet, basename='recipes')
+#router = routers.DefaultRouter()
+#router.register(r'recipes', recipeViewSet, basename='recipes')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -74,6 +74,7 @@ urlpatterns = [
     path('lykkehjul/', repViews.lykkehjul),
     path('opskrifter/', repViews.recipes),
     path('scraper/', repViews.scrapeMumum),
-    path('api/', include(router.urls)),
+    #path('api/', include(router.urls)),
+    path('api/recipes', recipeViewSet),
     path('api2/', include('rest_framework.urls', namespace='rest_framework'))
     ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  
