@@ -87,7 +87,7 @@ def tester(request, ingreList, ok):
         firstIngredient = ingreList[0].lower()
         
         startTime = time.time()
-        filterList = recMod.Recipe.objects.filter(ingredient__name__icontains=firstIngredient).prefetch_related('ingredient_set')
+        filterList = recMod.Recipe.objects.filter(ingredient__name__icontains=firstIngredient).order_by('name').prefetch_related('ingredient_set').distinct('name')
         """
         if len(ingreList)==1:
             print("her")
@@ -99,7 +99,7 @@ def tester(request, ingreList, ok):
         print("HVORDAN")
         #print(len(filterList))
         request.session['ingre'] = ingreList
-        if not len(ingreList)==1:
+        if len(ingreList)==1:
             for every in filterList:
                 ingreds = every.ingredient_set.all().values_list('name', flat=True)
             
