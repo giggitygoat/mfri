@@ -132,6 +132,9 @@
     {%endfor%}
   </table>
   <table>
+    {%if recipeList%}
+    <p> Antal opskrifter: {{recipeList|length}}</p>
+    {%endif%}
   {%for i in recipeList%}
   <tr>
    <td> {{i.name}} </td> <td style="padding-left: 20px;"> <a href='{{i.link}}'>Link</a> </td>
