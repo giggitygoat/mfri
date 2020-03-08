@@ -87,7 +87,7 @@ def tester(request, ingreList, ok):
         firstIngredient = ingreList[0].lower()
         
         startTime = time.time()
-        filterList = recMod.Recipe.objects.filter(ingredient__name__icontains=firstIngredient).order_by('name').prefetch_related('ingredient_set').distinct('name')
+        filterList = recMod.Recipe.objects.filter(ingredient__name__icontains=firstIngredient).order_by('name').prefetch_related('ingredient_set').distinct('link')
         """
         if len(ingreList)==1:
             print("her")
