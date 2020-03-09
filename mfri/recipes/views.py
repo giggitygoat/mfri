@@ -86,17 +86,17 @@ def tester(request, ingreList, ok):
     else:
         firstIngredient = ingreList[0].lower()
         
-        startTime = time.time()
         filterList = recMod.Recipe.objects.filter(ingredient__name__icontains=firstIngredient).order_by('name').prefetch_related('ingredient_set').distinct('name')
         """
         if len(ingreList)==1:
             print("her")
-            endTime = time.time()
-            print(endTime-startTime)  
+            
             return render(request, "recipes.html", {'dict':filterList,'results':len(filterList),'ingreList':ingreList}) 
         """ 
 
         print("HVORDAN")
+        startTime = time.time()
+
         #print(len(filterList))
         request.session['ingre'] = ingreList
         if len(ingreList)==1:
@@ -123,6 +123,8 @@ def tester(request, ingreList, ok):
     #print(multipleFilterList)  
     if len(multipleFilterList)>=1:
         filterList = multipleFilterList
+    endTime = time.time()
+    print(endTime-startTime)  
     """
     for each in filterList:
         #print(each.name)
