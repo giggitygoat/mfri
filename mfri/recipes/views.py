@@ -99,7 +99,7 @@ def tester(request, ingreList, ok):
 
         #print(len(filterList))
         request.session['ingre'] = ingreList
-        if len(ingreList)==1:
+        if not len(ingreList)==1:
             for every in filterList:
                 ingreds = every.ingredient_set.all().values_list('name', flat=True)
             
