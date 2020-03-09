@@ -118,7 +118,7 @@ def tester(request, ingreList, ok):
                 return render(request, "recipes.html", {'dict':'', 'ingreList':ingreList}) 
     
         else:
-            return render(request, "recipes.html", {'dict':filterList,'results':len(filterList),'ingreList':ingreList}) 
+            return render(request, "recipes.html", {}) 
     #print("HEEER",multipleFilterList)  
     #print(multipleFilterList)  
     if len(multipleFilterList)>=1:
