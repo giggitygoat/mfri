@@ -96,7 +96,6 @@ def tester(request, ingreList, ok):
 
         print("HVORDAN")
         startTime = time.time()
-
         #print(len(filterList))
         request.session['ingre'] = ingreList
         if not len(ingreList)==1:
@@ -118,7 +117,7 @@ def tester(request, ingreList, ok):
                 return render(request, "recipes.html", {'dict':'', 'ingreList':ingreList}) 
     
         else:
-            return render(request, "recipes.html", {}) 
+            return render(request, "recipes.html", {'dict':filterList.values(),'results':len(filterList),'ingreList':ingreList}) 
     #print("HEEER",multipleFilterList)  
     #print(multipleFilterList)  
     if len(multipleFilterList)>=1:
