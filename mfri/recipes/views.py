@@ -11,7 +11,7 @@ from functools import reduce
 from django.db.models import Prefetch
 from django.contrib import messages
 from django import template
-from firebase_admin import * as fb
+import firebase_admin as fb
 
 import datetime
 register = template.Library()
