@@ -21,6 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from recipes import views as repViews
 from django.conf import settings
+from django.shortcuts import redirect
 from recipes.models import Recipe, Ingredient, Token
 from django.conf.urls.static import static  
 from rest_framework.response import Response
