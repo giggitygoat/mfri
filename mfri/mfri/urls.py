@@ -46,8 +46,8 @@ class RecipeSerializer(serializers.ModelSerializer):
 def p4Alarm(request):
     if request.method == 'POST':
         if 'alarm' in request.POST:
-            repViews.send_to_token("alarm")
-
+            repViews.send_to_token(request.POST['alarm'])
+            return HttpResponse()
 
         if 'token' in request.POST:
             tok = Token(identi=request.POST['token'])
