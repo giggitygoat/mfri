@@ -22,7 +22,7 @@ def in_list(value, the_list):
     value = str(value)
     return value in the_list.split(',')
 
-cred = credentials.Certificate("p4alarm-firebase-adminsdk-g8il1-a3e2d3020a.json")
+cred = credentials.Certificate("/home/www/mfri/recipes/p4alarm-firebase-adminsdk-g8il1-a3e2d3020a.json")
 firebase_admin.initialize_app(cred)
 def scrapeSite(url):
     
