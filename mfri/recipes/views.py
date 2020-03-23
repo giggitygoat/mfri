@@ -42,15 +42,18 @@ def send_to_token(msg):
     registration_token = 'et1Gy1YilHQ:APA91bGqIAj2gb2sdZlCEcJH5mDE7bxMmNnLW3oY2iJEExM7uYHzRHE_T0_Mbr1qhWeIlEGq7fM4V95cR4WCSW51OXnpE1q5sggsrTrYLxVNx3KiDTxsBecbohm3YeaPZ7kzBoR18tt2'
 
     # See documentation on defining a message payload.
+    noti = messaging.Notification(
+        body='alarm',
+        title='titel',
+
+    )
+
     message = messaging.Message(
         data={
             'score': msg,
             'time': '2:45',
         },
-        notification ={
-      "body" : "This is an FCM notification that displays an image.!",
-      "title" : "FCM Notification",
-        },
+        notification =noti,
         token=registration_token,
     )
 
