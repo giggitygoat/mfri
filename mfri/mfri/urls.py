@@ -21,7 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from recipes import views as repViews
 from django.conf import settings
-from recipes.models import Recipe, Ingredient
+from recipes.models import Recipe, Ingredient, Token
 from django.conf.urls.static import static  
 from rest_framework.response import Response
 from rest_framework import routers, serializers, viewsets
@@ -52,6 +52,11 @@ def recipeViewSet(request):
         snippets = Recipe.objects.filter(ingredient__name__icontains='ananas').order_by('name').distinct('name')
         serializer = RecipeSerializer(snippets, many=True)
         return JsonResponse(serializer.data, safe=False)       
+
+    if request.method == 'POST':
+        tok = Token(identi=request.POST['token'])
+        tok.save()
+        return redirect('https://mfri.dk')
      
 
 
