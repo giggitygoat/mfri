@@ -47,6 +47,10 @@ def send_to_token(msg):
             'score': msg,
             'time': '2:45',
         },
+        notification ={
+      "body" : "This is an FCM notification that displays an image.!",
+      "title" : "FCM Notification",
+        },
         token=registration_token,
     )
 
