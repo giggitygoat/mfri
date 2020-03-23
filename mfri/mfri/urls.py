@@ -42,7 +42,17 @@ class RecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ['name','link','ingredient']
 
+@csrf_exempt
+def p4Alarm(request):
+    if request.method == 'POST':
+        if 'alarm' in request.POST:
+            repViews.send_to_token("alarm")
 
+
+        if 'token' in request.POST:
+            tok = Token(identi=request.POST['token'])
+            tok.save()
+            return redirect('https://mfri.dk')
 
 @csrf_exempt
 def recipeViewSet(request):
@@ -54,12 +64,8 @@ def recipeViewSet(request):
         serializer = RecipeSerializer(snippets, many=True)
         return JsonResponse(serializer.data, safe=False)       
 
-    if request.method == 'POST':
-        print("JEG POSTER")
-        tok = Token(identi=request.POST['token'])
-        tok.save()
-        return redirect('https://mfri.dk')
-     
+
+        
 
 
 """                          # ViewSets define the view behavior.
@@ -83,5 +89,6 @@ urlpatterns = [
     path('scraper/', repViews.scrapeMumum),
     #path('api/', include(router.urls)),
     path('api/recipes', recipeViewSet),
+    path('api/alarm', p4Alarm),
     path('api2/', include('rest_framework.urls', namespace='rest_framework'))
     ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  
