@@ -43,14 +43,14 @@ def send_to_token(msg):
 
     # See documentation on defining a message payload.
     noti = messaging.Notification(
-        body='alarm',
+        body=msg,
         title='titel',
 
     )
 
     message = messaging.Message(
         data={
-            'score': msg,
+            'score': 'alarm',
             'time': '2:45',
         },
         notification =noti,
