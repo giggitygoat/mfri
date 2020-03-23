@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Q
 from recipes import models as recMod
 import webbrowser, bs4, sys, requests, time
@@ -144,6 +144,9 @@ def recipes(request):
         pass
     if request.method=="POST":
         if 'searchField' in request.POST:
+            if request.POST['searchField'] == 'salt':
+                return redirect('https://youtu.be/ooOELrGMn14?t=10')
+
             return tester(request, ingreList, True)
         if 'ingre' in request.POST:
             try:
