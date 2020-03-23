@@ -11,7 +11,7 @@ from functools import reduce
 from django.db.models import Prefetch
 from django.contrib import messages
 from django import template
-import firebase_admin as fb
+from firebase_admin import messaging
 
 import datetime
 register = template.Library()
@@ -40,7 +40,7 @@ def send_to_token(msg):
     registration_token = 'et1Gy1YilHQ:APA91bGqIAj2gb2sdZlCEcJH5mDE7bxMmNnLW3oY2iJEExM7uYHzRHE_T0_Mbr1qhWeIlEGq7fM4V95cR4WCSW51OXnpE1q5sggsrTrYLxVNx3KiDTxsBecbohm3YeaPZ7kzBoR18tt2'
 
     # See documentation on defining a message payload.
-    message = fb.messaging.Message(
+    message = messaging.Message(
         data={
             'score': msg,
             'time': '2:45',
@@ -50,7 +50,7 @@ def send_to_token(msg):
 
     # Send a message to the device corresponding to the provided
     # registration token.
-    response = fb.send(message)
+    response = messaging.send(message)
     # Response is a message ID string.
     print('Successfully sent message:', response)
     # [END send_to_token]
