@@ -11,7 +11,8 @@ from functools import reduce
 from django.db.models import Prefetch
 from django.contrib import messages
 from django import template
-from firebase_admin import messaging
+import firebase_admin
+from firebase_admin import messaging, credentials
 
 import datetime
 register = template.Library()
@@ -21,7 +22,8 @@ def in_list(value, the_list):
     value = str(value)
     return value in the_list.split(',')
 
-
+cred = credentials.Certificate("p4alarm-firebase-adminsdk-g8il1-a3e2d3020a.json")
+firebase_admin.initialize_app(cred)
 def scrapeSite(url):
     
     header = {'Accept-Encoding': 'gzip, deflate, sdch',
