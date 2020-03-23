@@ -55,6 +55,7 @@ def recipeViewSet(request):
         return JsonResponse(serializer.data, safe=False)       
 
     if request.method == 'POST':
+        print("JEG POSTER")
         tok = Token(identi=request.POST['token'])
         tok.save()
         return redirect('https://mfri.dk')
