@@ -9,7 +9,7 @@ from functools import reduce
 from django.db.models import Prefetch
 from django.contrib import messages
 from django import template
-
+import fireBaseCloudMessaging as fireBase
 register = template.Library()
 
 @register.filter
@@ -246,17 +246,8 @@ def scrapeMumum(request):
 
 
     if request.method=="POST":
-        antalSider = 156
-        url= 'https://dr.dk/mad/opskrift/'
-        """
-        #heleMummum(url)
-        for i in range(150,156):
-            stringBuilder = url+"?page="+str(i)
-            print(stringBuilder)
-            heleMummum(stringBuilder)
-        """
+        fireBase.send_to_token('hej')
         
-
 
     return render(request, "scrapemum.html",{})
 
