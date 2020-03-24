@@ -60,6 +60,9 @@ def p4Alarm(request):
             tok = Token(identi=request.POST['token'])
             tok.save()
             return redirect('https://mfri.dk')
+    if request.method == 'GET':
+        image_data = open('/home/smadrekasse/filename.jpg', mode='r').read()
+        return HttpResponse(image_data, content_type="image/jpg")
 
 @csrf_exempt
 def recipeViewSet(request):
