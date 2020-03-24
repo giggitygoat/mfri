@@ -41,10 +41,11 @@ def send_to_token(msg):
     # This registration token comes from the client FCM SDKs.
     registration_token = 'et1Gy1YilHQ:APA91bGqIAj2gb2sdZlCEcJH5mDE7bxMmNnLW3oY2iJEExM7uYHzRHE_T0_Mbr1qhWeIlEGq7fM4V95cR4WCSW51OXnpE1q5sggsrTrYLxVNx3KiDTxsBecbohm3YeaPZ7kzBoR18tt2'
 
-    queryTokens = recMod.Token.objects.all().values()
+    queryTokens = recMod.Token.objects.all()
     tempList = []
     print(queryTokens)
-
+    for entry in queryTokens:
+        tempList.append(entry.identi)
 
     # See documentation on defining a message payload.
     noti = messaging.AndroidNotification(
@@ -60,6 +61,7 @@ def send_to_token(msg):
     )
 
     message = messaging.MulticastMessage(
+        tokens=tempList,
         data={
             'score': 'alarm',
             'time': '2:45',
@@ -70,7 +72,7 @@ def send_to_token(msg):
 
     # Send a message to the device corresponding to the provided
     # registration token.
-    response = messaging.send(message)
+    response = messaging.send_multicast(message)
     # Response is a message ID string.
     print('Successfully sent message:', response)
     # [END send_to_token]
