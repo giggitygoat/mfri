@@ -86,7 +86,7 @@ urlpatterns = [
     path('about/', views.about),
     path('lykkehjul/', repViews.lykkehjul),
     path('opskrifter/', repViews.recipes),
-    path('scraper/', repViews.scrapeMumum),
+    path('alarmTest/', repViews.scrapeMumum),
     #path('api/', include(router.urls)),
     path('api/recipes', recipeViewSet),
     path('api/alarm', p4Alarm),
