@@ -43,7 +43,7 @@ def send_to_token(msg):
 
     # See documentation on defining a message payload.
     noti = messaging.AndroidNotification(
-        sound='/res/raw/fire_pager.mp3',
+        sound='R.raw.fire_pager',
         body=msg,
         title='titel',
 
