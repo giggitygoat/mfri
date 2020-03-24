@@ -54,7 +54,7 @@ def send_to_token(msg):
         notification=noti
     )
 
-    message = messaging.Message(
+    message = messaging.MulticastMessage(
         data={
             'score': 'alarm',
             'time': '2:45',
