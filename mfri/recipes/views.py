@@ -41,6 +41,11 @@ def send_to_token(msg):
     # This registration token comes from the client FCM SDKs.
     registration_token = 'et1Gy1YilHQ:APA91bGqIAj2gb2sdZlCEcJH5mDE7bxMmNnLW3oY2iJEExM7uYHzRHE_T0_Mbr1qhWeIlEGq7fM4V95cR4WCSW51OXnpE1q5sggsrTrYLxVNx3KiDTxsBecbohm3YeaPZ7kzBoR18tt2'
 
+    queryTokens = recMod.Token.objects.all()
+    tempList = []
+    print(queryTokens)
+
+
     # See documentation on defining a message payload.
     noti = messaging.AndroidNotification(
         sound='/res/raw/fire_pager',
