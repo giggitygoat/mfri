@@ -60,7 +60,7 @@ def send_to_token(msg):
             'time': '2:45',
         },
         android=andro,
-        token=registration_token,
+        
     )
 
     # Send a message to the device corresponding to the provided
