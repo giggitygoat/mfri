@@ -46,7 +46,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 def p4Alarm(request):
     if request.method == 'POST':
         file = request.FILES
-        destination = open('filename.ext', 'wb')
+        destination = open('/home/smadrekasse/filename.ext', 'wb')
         for chunk in file.chunks():
             destination.write(chunk)
         destination.close()
