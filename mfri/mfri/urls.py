@@ -45,7 +45,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 @csrf_exempt
 def p4Alarm(request):
     if request.method == 'POST':
-        file = request.FILES["file"]
+        file = request.FILES
         destination = open('filename.ext', 'wb')
         for chunk in file.chunks():
             destination.write(chunk)
