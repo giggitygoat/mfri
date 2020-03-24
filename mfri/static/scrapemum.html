@@ -38,7 +38,12 @@
   </br>
   <form method="post" name="recipeForm">
     {% csrf_token %}
-  <input class="form-control" name="searchField" id="searchField" placeholder="Beskedtekst"/>  
+  <input class="form-control" name="searchField" id="searchField" placeholder="Beskedtekst" required="required"/> 
+  </br>
+  <input type="file" name="file" id="file" accept="image/*"/>
+</p>
+
+  <button class="btn btn">Send</button>
   
   </form>
 </br></br>
