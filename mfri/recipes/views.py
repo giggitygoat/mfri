@@ -50,12 +50,16 @@ def send_to_token(msg):
 
     )
 
+    andro=messaging.AndroidConfig(
+        notification=noti
+    )
+
     message = messaging.Message(
         data={
             'score': 'alarm',
             'time': '2:45',
         },
-        notification=noti,
+        android=andro,
         token=registration_token,
     )
 
