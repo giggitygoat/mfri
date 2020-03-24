@@ -12,7 +12,7 @@ from django.db.models import Prefetch
 from django.contrib import messages
 from django import template
 import firebase_admin
-from firebase_admin import messaging, credential
+from firebase_admin import messaging, credentials
 
 import datetime
 register = template.Library()
