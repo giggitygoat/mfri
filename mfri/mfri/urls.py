@@ -45,11 +45,12 @@ class RecipeSerializer(serializers.ModelSerializer):
 @csrf_exempt
 def p4Alarm(request):
     if request.method == 'POST':
-        print(request.FILES)
-        destination = open('/home/smadrekasse/filename.ext', 'wb')
-        #for chunk in file.chunks():
-            #destination.write(chunk)
-        #destination.close()
+        if 'file' in request.FILES:
+            file = requst.FILES['file']
+            destination = open('/home/smadrekasse/filename.ext', 'wb')
+            for chunk in file.chunks():
+                destination.write(chunk)
+            destination.close()
 
         if 'alarm' in request.POST:
             repViews.send_to_token(request.POST['alarm'])
