@@ -36,14 +36,14 @@
       <div class="col-lg-12" >
         <h1 class="mt-5">Skriv besked</h1>
   </br>
-  <form method="post" name="recipeForm">
+  <form method="post" name="recipeForm" enctype="multipart/form-data">
     {% csrf_token %}
   <input class="form-control" name="searchField" id="searchField" placeholder="Beskedtekst" required="required"/> 
   </br>
   <input type="file" id="img" name="img" accept="image/*">
 </p>
 
-  <button class="btn btn">Send</button>
+  <input type="submit" value="Send" class="btn btn"/>
   
   </form>
 
