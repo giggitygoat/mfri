@@ -40,36 +40,13 @@
     {% csrf_token %}
   <input class="form-control" name="searchField" id="searchField" placeholder="Beskedtekst" required="required"/> 
   </br>
-  <input type="file" name="file" id="file" accept="image/*"/>
+  <input type="file" id="img" name="img" accept="image/*">
 </p>
 
   <button class="btn btn">Send</button>
   
   </form>
-</br></br>
-      </div>
-    
-      <form method='post' name='sessionForm'>
-        {% csrf_token %}
-      {%for ingre in ingreList%}
-        
-      {%if forloop.last%}
-      <button class='btn btn-primary' type="submit" name='ingre' value='{{ingre}}'>{{ingre}}</button>
-      {%else%}
-      <button  class='btn btn-primary' type="submit" name='ingre' value='{{ingre}}'>{{ingre}}</button> -
-      {%endif%}
 
-
-      {%endfor%}
-    </form>
-    </div>
-  </p>
-  </br>
-    {% for k, v in dict.items %}
-    {{k}} - <a href='{{v}}'>Link</a></br>
-     
-    {%endfor%}
-  </div>
   
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.slim.min.js"></script>
