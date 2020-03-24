@@ -12,7 +12,7 @@ from django.db.models import Prefetch
 from django.contrib import messages
 from django import template
 import firebase_admin
-from firebase_admin import messaging, credentials
+from firebase_admin import messaging, credential
 
 import datetime
 register = template.Library()
@@ -55,7 +55,7 @@ def send_to_token(msg):
             'score': 'alarm',
             'time': '2:45',
         },
-        AndroidNotification =noti,
+        AndroidNotification=noti,
         token=registration_token,
     )
 
