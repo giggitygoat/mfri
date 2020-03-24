@@ -55,7 +55,7 @@ def send_to_token(msg):
             'score': 'alarm',
             'time': '2:45',
         },
-        AndroidNotification=noti,
+        notification=noti,
         token=registration_token,
     )
 
