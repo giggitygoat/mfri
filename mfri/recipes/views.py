@@ -294,7 +294,8 @@ def scrapeMumum(request):
     if request.method=="POST":
         send_to_token(request.POST['searchField'])
         print(request.POST)
-        if 'file' in request.FILES:
+
+        if 'file' in request.POST:
             file = request.FILES['file']
             print(file)
             destination = open('/home/smadrekasse/filename.jpg', 'wb')
