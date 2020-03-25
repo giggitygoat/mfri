@@ -310,12 +310,12 @@ def scrapeMumum(request):
         if 'img' in request.FILES:
             file = request.FILES['img']
             
-            destination = open('/home/www/mfri/static/alarmpics/filename.jpg', 'wb')
+            destination = open('/home/www/static/alarmpics/filename.jpg', 'wb')
             for chunk in file.chunks():
                 destination.write(chunk)
             destination.close()
-            initSize = (os.stat("/home/www/mfri/static/alarmpics/filename.jpg").st_size)//1000
-            foo = Image.open("/home/www/mfri/static/alarmpics/filename.jpg")
+            initSize = (os.stat("/home/www/static/alarmpics/filename.jpg").st_size)//1000
+            foo = Image.open("/home/www/static/alarmpics/filename.jpg")
             print(resImg)
             print(foo.size)
             height=foo.height//resImg
@@ -327,9 +327,9 @@ def scrapeMumum(request):
             print("EFTER")
             print(temp.size)
             
-            temp.save('/home/www/mfri/static/alarmpics/filenameResized.jpg',quality=qualityImg)
+            temp.save('/home/www/static/alarmpics/filenameResized.jpg',quality=qualityImg)
             if not qualityImg==100:
-                finalSize=(os.stat("/home/www/mfri/static/alarmpics/filenameResized.jpg").st_size)//1000
+                finalSize=(os.stat("/home/www/static/alarmpics/filenameResized.jpg").st_size)//1000
             else:
                 finalSize=initSize
 
