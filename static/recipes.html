@@ -2,10 +2,9 @@
 <html lang="en">
 
 <head>
+  {% load cache %}
 	{% load static%}
- <!-- <script src="{% static '/pace/pace.js' %}"></script> 
-
-<link href="{% static '/pace/themes/blue/pace-theme-loading-bar.css' %}" rel="stylesheet" /> -->
+ 
 
 <style>
  .center-div
@@ -31,9 +30,10 @@
   visibility: hidden;
   width: max-content;
   background-color: black;
+  opacity: 0.9;
   color: #fff;
   text-align: center;
-  padding: 5px 0;
+  padding: 5px;
   border-radius: 6px;
  
   /* Position the tooltip text - see examples below! */
@@ -59,7 +59,7 @@
   <!-- Bootstrap core CSS -->
   {%load static%}
   <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 
@@ -133,6 +133,9 @@
     {%endfor%}
   </table>
   <table>
+    {%if recipeList%}
+    <p> Antal opskrifter: {{recipeList|length}}</p>
+    {%endif%}
   {%for i in recipeList%}
   <tr>
    <td> {{i.name}} </td> <td style="padding-left: 20px;"> <a href='{{i.link}}'>Link</a> </td>
@@ -140,6 +143,13 @@
    {%endfor%}
 </table>
 
+<button name="saltknap" class="btn btn-link" onclick="saltQuery()">Front-end request (salt test)</button>
+
+<table class="saltDiv">
+
+
+
+</table>
   </div>
   
 
@@ -419,9 +429,25 @@
       </datalist>
 
 
+      <script data-pace-options='{ "elements": { "selectors": ["#image"] }, "startOnPageLoad": false }' src="{%  static  '/pace/pace.js' %}"></script> 
 
+      <link href="{% static '/pace/themes/blue/pace-theme-bounce.css' %}" rel="stylesheet" /> 
 <script type='text/javascript'>
 
+function saltQuery(){
+Pace.on('done', function() {
+  
+});
+$.get('https://mfri.dk/api/recipes', function(data,status){
+  for(var i=0; i<data.length; i++){
+    $(".saltDiv").append(`<tr> <td>${data[i].name} </td>  <td> <a href='${data[i].link}'>Link</a> </td> <td> <a href='{{k.link}}'>{{k.name}}</a> </td> <td style="padding-left: 20px;"><div class="tooltipxx">Antal ingredienser: 
+      ${data[i].ingredient.length}
+        <span class="tooltiptextxo">  </br> </span>
+      </div> </td> </tr>`);
+  }
+});
+
+}
 
 function setCookie(cname, cvalue, exdays) {
   var d = new Date();
@@ -477,6 +503,7 @@ function setForm(){
     changeForm();
   }
 }
+
 
 
 function sortTable(n) {
