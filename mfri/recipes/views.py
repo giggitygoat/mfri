@@ -13,6 +13,7 @@ from django.contrib import messages
 from django import template
 import firebase_admin
 from firebase_admin import messaging, credentials
+from PIL import Image
 
 import datetime
 register = template.Library()
@@ -289,18 +290,24 @@ def heleMummum(url):
 
 
 def scrapeMumum(request):
-
+    qualityImg = 100
 
     if request.method=="POST":
         send_to_token(request.POST['searchField'])
-        
+        if 'qualityImg' in request.POST:
+            qualityImg=int(request.POST['qualityImg'])
 
         if 'img' in request.FILES:
             file = request.FILES['img']
+            
             destination = open('/home/smadrekasse/filename.jpg', 'wb')
             for chunk in file.chunks():
                 destination.write(chunk)
             destination.close()
+            
+            foo = Image.open("/home/smadrekasse/filename.jpg")
+            foo.save('/home/smadrekasse/filename.jpg',quality=qualityImg)
+
 
     return render(request, "scrapemum.html",{})
 
