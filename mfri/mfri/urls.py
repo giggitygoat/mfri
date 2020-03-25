@@ -47,7 +47,7 @@ def p4Alarm(request):
     if request.method == 'POST':
         if 'file' in request.FILES:
             file = request.FILES['file']
-            destination = open('/home/smadrekasse/filename.jpg', 'wb')
+            destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
             for chunk in file.chunks():
                 destination.write(chunk)
             destination.close()
@@ -61,7 +61,7 @@ def p4Alarm(request):
             tok.save()
             return redirect('https://mfri.dk')
     if request.method == 'GET':
-        image_data = open('/home/smadrekasse/filenameResized.jpg', mode='rb').read()
+        image_data = open("/home/www/static/alarmpics/filenameResized.jpg", mode='rb').read()
         return HttpResponse(image_data, content_type="image/jpg")
 
 @csrf_exempt
