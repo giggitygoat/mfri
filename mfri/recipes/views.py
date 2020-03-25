@@ -322,9 +322,9 @@ def scrapeMumum(request):
             print(width)
             print(height)
             
-            foo.resize((width,height),Image.ANTIALIAS)
+            temp = foo.resize((width,height),Image.ANTIALIAS)
             print("EFTER")
-            print(foo.size)
+            print(temp.size)
             
             foo.save('/home/smadrekasse/filename.jpg',quality=qualityImg)
             if not qualityImg==100:
