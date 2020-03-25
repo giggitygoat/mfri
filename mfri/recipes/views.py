@@ -307,12 +307,12 @@ def scrapeMumum(request):
             for chunk in file.chunks():
                 destination.write(chunk)
             destination.close()
-            initSize = os.stat("/home/smadrekasse/filename.jpg").st_size
+            initSize = (os.stat("/home/smadrekasse/filename.jpg").st_size)/1000
             foo = Image.open("/home/smadrekasse/filename.jpg")
             
             foo.save('/home/smadrekasse/filename.jpg',quality=qualityImg)
             if not qualityImg==100:
-                finalSize=os.stat("/home/smadrekasse/filename.jpg").st_size
+                finalSize=(os.stat("/home/smadrekasse/filename.jpg").st_size)/1000
             else:
                 finalSize=initSize
 

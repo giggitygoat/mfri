@@ -41,9 +41,7 @@
   <input class="form-control" name="searchField" id="searchField" placeholder="Beskedtekst" required="required"/> 
   </br>
 
-<button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getFile').click()">Vælg billede</button>
-<label id="imgName"></label>
-<input type='file' id="getFile" style="display:none" name="img" accept="image/*">
+<input type='file' id="getFile" class="form-control-file" name="img" accept="image/*">
 </br>
 <input type="number" name="qualityImg" placeholder="Billedkvalitet (1-100)" min="1" max="100"/> 
 
@@ -53,8 +51,8 @@
   
   </form>
 {%if init%}
-<legend>Billedstørrelse før: </legend>{{init}} </br>
-<legend>Billedstørrelse efter: </legend> {{final}}
+Billedstørrelse før:<b> {{init}}</b> </br>
+Billedstørrelse efter: <b>{{final}}</b>
 {%endif%}
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.slim.min.js"></script>
