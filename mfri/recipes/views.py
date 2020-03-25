@@ -55,12 +55,14 @@ def send_to_token(msg):
         sound='/res/raw/fire_pager',
         body=msg,
         title='titel',
+        priority='max',
 
 
     )
 
     andro=messaging.AndroidConfig(
-        notification=noti
+        notification=noti,
+        priority='high',
     )
 
     message = messaging.MulticastMessage(
