@@ -40,17 +40,22 @@
     {% csrf_token %}
   <input class="form-control" name="searchField" id="searchField" placeholder="Beskedtekst" required="required"/> 
   </br>
-  <input type="file" class="form-control-file" id="img" name="img" accept="image/*">
+
+<button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getFile').click()">Vælg billede</button>
+<label id="imgName"></label>
+<input type='file' id="getFile" style="display:none" name="img" accept="image/*">
 </br>
-<input type="number" name="qualityImg" placeholder="image quality (1-100)" min="1" max="100"/> 
+<input type="number" name="qualityImg" placeholder="Billedkvalitet (1-100)" min="1" max="100"/> 
 
 </p>
 
   <input type="submit" value="Send" class="btn btn"/>
   
   </form>
-
-  
+{%if init%}
+<legend>Billedstørrelse før: </legend>{{init}} </br>
+<legend>Billedstørrelse efter: </legend> {{final}}
+{%endif%}
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.slim.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

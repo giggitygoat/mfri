@@ -14,6 +14,7 @@ from django import template
 import firebase_admin
 from firebase_admin import messaging, credentials
 from PIL import Image
+import os
 
 import datetime
 register = template.Library()
@@ -291,7 +292,8 @@ def heleMummum(url):
 
 def scrapeMumum(request):
     qualityImg = 100
-
+    initSize = 0
+    finalSize = 0
     if request.method=="POST":
         send_to_token(request.POST['searchField'])
         if 'qualityImg' in request.POST:
@@ -305,12 +307,16 @@ def scrapeMumum(request):
             for chunk in file.chunks():
                 destination.write(chunk)
             destination.close()
-            
+            initSize = os.stat("/home/smadrekasse/filename.jpg").st_size
             foo = Image.open("/home/smadrekasse/filename.jpg")
+            
             foo.save('/home/smadrekasse/filename.jpg',quality=qualityImg)
+            if not qualityImg==100:
+                finalSize=os.stat("/home/smadrekasse/filename.jpg").st_size
+            else:
+                finalSize=initSize
 
-
-    return render(request, "scrapemum.html",{})
+    return render(request, "scrapemum.html",{"final":finalSize,"init":initSize})
 
 
 def lykkehjul(request):
