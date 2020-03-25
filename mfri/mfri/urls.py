@@ -61,7 +61,7 @@ def p4Alarm(request):
             tok.save()
             return redirect('https://mfri.dk')
     if request.method == 'GET':
-        image_data = open('/home/smadrekasse/filename.jpg', mode='rb').read()
+        image_data = open('/home/smadrekasse/filenameResized.jpg', mode='rb').read()
         return HttpResponse(image_data, content_type="image/jpg")
 
 @csrf_exempt

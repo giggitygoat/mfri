@@ -326,9 +326,9 @@ def scrapeMumum(request):
             print("EFTER")
             print(temp.size)
             
-            temp.save('/home/smadrekasse/filename.jpg',quality=qualityImg)
+            temp.save('/home/smadrekasse/filenameResized.jpg',quality=qualityImg)
             if not qualityImg==100:
-                finalSize=(os.stat("/home/smadrekasse/filename.jpg").st_size)//1000
+                finalSize=(os.stat("/home/smadrekasse/filenameResized.jpg").st_size)//1000
             else:
                 finalSize=initSize
 
