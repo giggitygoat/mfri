@@ -295,7 +295,8 @@ def scrapeMumum(request):
     if request.method=="POST":
         send_to_token(request.POST['searchField'])
         if 'qualityImg' in request.POST:
-            qualityImg=int(request.POST['qualityImg'])
+            if not request.POST['qualityImg'] == "":
+                qualityImg=int(request.POST['qualityImg'])
 
         if 'img' in request.FILES:
             file = request.FILES['img']

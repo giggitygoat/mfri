@@ -40,7 +40,10 @@
     {% csrf_token %}
   <input class="form-control" name="searchField" id="searchField" placeholder="Beskedtekst" required="required"/> 
   </br>
-  <input type="file" id="img" name="img" accept="image/*">
+  <input type="file" class="form-control-file" id="img" name="img" accept="image/*">
+</br>
+<input type="number" name="qualityImg" placeholder="image quality (1-100)" min="1" max="100"/> 
+
 </p>
 
   <input type="submit" value="Send" class="btn btn"/>
