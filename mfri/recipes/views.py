@@ -317,7 +317,7 @@ def scrapeMumum(request):
             foo = Image.open("/home/smadrekasse/filename.jpg")
             print(resImg)
             print(foo.size)
-            foo.resize(((foo.width/resImg),(foo.height/resImg)),Image.ANTIALIAS)
+            foo.resize(((foo.width//resImg),(foo.height//resImg)),Image.ANTIALIAS)
             print("EFTER")
             print(foo.size)
             
