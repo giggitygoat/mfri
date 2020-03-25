@@ -294,12 +294,18 @@ def scrapeMumum(request):
     qualityImg = 100
     initSize = 0
     finalSize = 0
+    resImg = 1
     if request.method=="POST":
         send_to_token(request.POST['searchField'])
         if 'qualityImg' in request.POST:
             if not request.POST['qualityImg'] == "":
                 qualityImg=int(request.POST['qualityImg'])
 
+        if 'resolution' in request.POST:
+            if not request.POST['resolution'] == "":
+                resImg=int(request.POST['resolution'])
+
+        
         if 'img' in request.FILES:
             file = request.FILES['img']
             
@@ -309,7 +315,7 @@ def scrapeMumum(request):
             destination.close()
             initSize = (os.stat("/home/smadrekasse/filename.jpg").st_size)//1000
             foo = Image.open("/home/smadrekasse/filename.jpg")
-            
+            foo.resize(foo.width//resImg,foo.height//resImg,Image.ANTIALIAS)
             foo.save('/home/smadrekasse/filename.jpg',quality=qualityImg)
             if not qualityImg==100:
                 finalSize=(os.stat("/home/smadrekasse/filename.jpg").st_size)//1000
