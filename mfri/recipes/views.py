@@ -315,6 +315,7 @@ def scrapeMumum(request):
             destination.close()
             initSize = (os.stat("/home/smadrekasse/filename.jpg").st_size)//1000
             foo = Image.open("/home/smadrekasse/filename.jpg")
+            print(resImg)
             print(foo.size)
             foo.resize((foo.width//resImg,foo.height//resImg),Image.ANTIALIAS)
             print("EFTER")
