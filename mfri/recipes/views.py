@@ -319,6 +319,9 @@ def scrapeMumum(request):
             print(foo.size)
             height=foo.height//resImg
             width=foo.width//resImg
+            print(width)
+            print(height)
+            
             foo.resize((width,height),Image.ANTIALIAS)
             print("EFTER")
             print(foo.size)
