@@ -7,6 +7,7 @@ import webbrowser, bs4, sys, requests, time
 import numpy as np
 import operator
 import time
+from django.conf import settings as djangoSettings
 from functools import reduce
 from django.db.models import Prefetch
 from django.contrib import messages
