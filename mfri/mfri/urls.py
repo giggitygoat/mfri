@@ -46,10 +46,10 @@ class RecipeSerializer(serializers.ModelSerializer):
 def p4Alarm(request):
     if request.method == 'POST':
         if 'file' in request.FILES:
-            file = request.FILES['file']
-            print(file)
+            filer = request.FILES['file']
+            print(filer)
             destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
-            for chunk in file.chunks():
+            for chunk in filer.chunks():
                 destination.write(chunk)
             destination.close()
 
