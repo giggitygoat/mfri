@@ -47,9 +47,10 @@ def p4Alarm(request):
     if request.method == 'POST':
         if 'file' in request.FILES:
             filer = request.FILES['file']
-            print(filer.chunks())
+            
             destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
             for chunk in filer.chunks():
+                print(chunk)
                 destination.write(chunk)
             destination.close()
 
