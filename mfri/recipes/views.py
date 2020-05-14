@@ -331,7 +331,7 @@ def scrapeMumum(request):
             
             temp.save('/home/www/static/alarmpics/filenameResized.jpg',quality=qualityImg)
             if not qualityImg==100:
-                finalSize=(os.stat("/home/www/static/alarmpics/filenameResized.jpg").st_size)//1000
+                finalSize=(os.stat("/home/www/static/alarmpics/filenameResized.jpg").st_size)
             else:
                 finalSize=initSize
 
