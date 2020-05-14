@@ -42,11 +42,8 @@ class RecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ['name','link','ingredient']
 
-
-def writeFile(filer):
- 
-    
-            
+@after_response.enable
+def writeFile(filer):        
     destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
     for chunk in filer.chunks():
         #print(chunk)
@@ -62,7 +59,7 @@ def writeFile(filer):
 def p4Alarm(request):
     if request.method == 'POST':
         if 'file' in request.FILES:
-            writeFile(request.FILES['file'])
+            writeFile.after_response(request.FILES['file'])
             
             """
             filer = request.FILES['file']
@@ -76,7 +73,7 @@ def p4Alarm(request):
         if 'alarm' in request.POST:
             #sendNoti = Thread(target = repViews.send_to_token,args(request.POST['alarm']))
             #sendNoti.start()
-            repViews.send_to_token(request.POST['alarm'])
+            repViews.send_to_token.after_response(request.POST['alarm'])
             return HttpResponse()
 
         if 'token' in request.POST:
