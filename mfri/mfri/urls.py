@@ -41,14 +41,10 @@ class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         fields = ['name','link','ingredient']
-
+"""
 @after_response.enable
 def writeFile(filer):        
-    destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
-    for chunk in filer.chunks():
-        #print(chunk)
-        destination.write(chunk)
-        destination.close()
+"""
 
 
 
@@ -59,8 +55,13 @@ def writeFile(filer):
 def p4Alarm(request):
     if request.method == 'POST':
         if 'file' in request.FILES:
-            writeFile.after_response(request.FILES['file'])
-            
+            #writeFile.after_response(request.FILES['file'])
+            filer = request.FILES['file']
+            destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
+            for chunk in filer.chunks():
+                #print(chunk)
+                destination.write(chunk)
+                destination.close()
             """
             filer = request.FILES['file']
             
