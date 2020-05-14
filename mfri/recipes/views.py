@@ -16,7 +16,7 @@ import firebase_admin
 from firebase_admin import messaging, credentials
 from PIL import Image
 import os
-
+import after_response
 import datetime
 register = template.Library()
 
@@ -38,7 +38,7 @@ def scrapeSite(url):
         return res.content
     else:
         return
-
+@after_response.enable
 def send_to_token(msg):
     # [START send_to_token]
     # This registration token comes from the client FCM SDKs.
