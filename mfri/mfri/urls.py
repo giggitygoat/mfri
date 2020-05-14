@@ -50,12 +50,12 @@ def p4Alarm(request):
             
             destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
             for chunk in filer.chunks():
-                print(chunk)
+                #print(chunk)
                 destination.write(chunk)
             destination.close()
 
         if 'alarm' in request.POST:
-            repViews.send_to_token(request.POST['alarm'])
+            #repViews.send_to_token(request.POST['alarm'])
             return HttpResponse()
 
         if 'token' in request.POST:
