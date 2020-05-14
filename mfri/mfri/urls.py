@@ -27,7 +27,7 @@ from django.conf.urls.static import static
 from rest_framework.response import Response
 from rest_framework import routers, serializers, viewsets
 from threading import Thread
-
+import after_response
 
 
 
