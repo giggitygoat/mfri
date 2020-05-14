@@ -62,8 +62,8 @@ def writeFile(filer):
 def p4Alarm(request):
     if request.method == 'POST':
         if 'file' in request.FILES:
-            setFile = Thread(target = writeFile,args=(request.FILES['file']))
-            setFile.start()
+            writeFile(request.FILES['file'])
+            
             """
             filer = request.FILES['file']
             
@@ -74,9 +74,9 @@ def p4Alarm(request):
             destination.close()
             """
         if 'alarm' in request.POST:
-            sendNoti = Thread(target = repViews.send_to_token,args(request.POST['alarm']))
-            sendNoti.start()
-            #repViews.send_to_token(request.POST['alarm'])
+            #sendNoti = Thread(target = repViews.send_to_token,args(request.POST['alarm']))
+            #sendNoti.start()
+            repViews.send_to_token(request.POST['alarm'])
             return HttpResponse()
 
         if 'token' in request.POST:
