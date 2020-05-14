@@ -26,7 +26,7 @@ from recipes.models import Recipe, Ingredient, Token
 from django.conf.urls.static import static  
 from rest_framework.response import Response
 from rest_framework import routers, serializers, viewsets
-
+from threading import Thread
 
 
 
@@ -42,10 +42,29 @@ class RecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ['name','link','ingredient']
 
+
+def writeFile(filer):
+ 
+    
+            
+    destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
+    for chunk in filer.chunks():
+        #print(chunk)
+        destination.write(chunk)
+        destination.close()
+
+
+
+
+
+
 @csrf_exempt
 def p4Alarm(request):
     if request.method == 'POST':
         if 'file' in request.FILES:
+            setFile = Thread(target = writeFile,args=(request.FILES['file']))
+            setFile.start()
+            """
             filer = request.FILES['file']
             
             destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
@@ -53,8 +72,10 @@ def p4Alarm(request):
                 #print(chunk)
                 destination.write(chunk)
             destination.close()
-
+            """
         if 'alarm' in request.POST:
+            sendNoti = Thread(target = repViews.send_to_token,args(request.POST['alarm']))
+            sendNoti.start()
             #repViews.send_to_token(request.POST['alarm'])
             return HttpResponse()
 
