@@ -57,7 +57,7 @@ def writeFile(filer):
 
 
 
-
+@after_response.enable
 @csrf_exempt
 def p4Alarm(request):
     if request.method == 'POST':
