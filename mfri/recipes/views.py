@@ -80,7 +80,7 @@ def send_to_token(msg):
 
     response = messaging.send_multicast(message)
     # Response is a message ID string.
-    print('Response code from Firebase: :', response.Responses)
+    print('Response code from Firebase: :', response.getResponses())
     # [END send_to_token]
 
 def scraperMain(url):
