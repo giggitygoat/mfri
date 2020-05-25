@@ -80,6 +80,8 @@ def send_to_token(msg):
 
     response = messaging.send_multicast(message)
     # Response is a message ID string.
+    for i in response.responses:
+        print('Respnse code for application nr: ',i, '= ',i.messageId)
     print('Response code from Firebase: :', response.responses)
     # [END send_to_token]
 
