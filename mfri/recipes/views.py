@@ -77,9 +77,10 @@ def send_to_token(msg):
 
     # Send a message to the device corresponding to the provided
     # registration token.
+
     response = messaging.send_multicast(message)
     # Response is a message ID string.
-    print('Successfully sent message:', response)
+    print('Response code from Firebase: :', response.status_code)
     # [END send_to_token]
 
 def scraperMain(url):
