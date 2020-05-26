@@ -24,7 +24,8 @@ from django.shortcuts import redirect
 from recipes.models import Recipe, Ingredient, Token
 from django.conf.urls.static import static  
 from rest_framework.response import Response
-from rest_framework import routers, serializers, viewsets, renderers.JSONRenderer
+from rest_framework import routers, serializers, viewsets
+from rest_framework.renderers import JSONRenderer
 from threading import Thread
 from rest_framework import status
 from django.template import loader
