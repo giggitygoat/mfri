@@ -82,7 +82,7 @@ def p4Alarm(request):
                 repViews.send_to_token(request.POST['alarm'])
                 print("hej")
             return ResponseThen(request.POST['alarm'],sendDataToMobile,status=status.HTTP_200_OK)
-i           return Response("ok", status=status.HTTP_200_OK)
+            return Response("ok", status=status.HTTP_200_OK)
         if 'token' in request.POST:
             tok = Token(identi=request.POST['token'])
             tok.save()
