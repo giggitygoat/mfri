@@ -23,7 +23,7 @@ from django.conf import settings
 from django.shortcuts import redirect
 from recipes.models import Recipe, Ingredient, Token
 from django.conf.urls.static import static  
-#from rest_framework.response import Response
+from rest_framework.response import Response
 from rest_framework import routers, serializers, viewsets
 from threading import Thread
 from rest_framework import status
@@ -82,7 +82,7 @@ def p4Alarm(request):
                 repViews.send_to_token(request.POST['alarm'])
                 print("hej")
             return ResponseThen(request.POST['alarm'],sendDataToMobile,status=status.HTTP_200_OK)
-
+i           return HttpResponse()
         if 'token' in request.POST:
             tok = Token(identi=request.POST['token'])
             tok.save()
