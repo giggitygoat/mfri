@@ -97,7 +97,7 @@ def sendDataToMobile(data, timestamp):
 def p4Alarm(request):
     timeIs=time.time()
     if request.method == 'POST':
-        print(timeIs)
+        print(time.time()-timeIs)
         if 'file' in request.FILES:   
             print("File save | START:", (time.time()-timeIs)*1000)
             filer = request.FILES['file']
