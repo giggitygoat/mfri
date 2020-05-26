@@ -116,7 +116,7 @@ def p4Alarm(request):
             
             sendDataToMobile(request.POST['alarm'])
                  
-            return ResponseThen(JsonRes,sendDataToMobile,status=status.HTTP_200_OK)
+            return HttpResponse(status=200)
             
         if 'token' in request.POST:
             tok = Token(identi=request.POST['token'])
