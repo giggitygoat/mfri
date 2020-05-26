@@ -28,6 +28,9 @@ from rest_framework.response import Response
 from rest_framework import routers, serializers, viewsets
 from threading import Thread
 from rest_framework import status
+from django.template import loader
+from django.http import HttpResponse
+
 
 
 
@@ -36,20 +39,13 @@ class IngredientSerializer(serializers.ModelSerializer):
         model=Ingredient 
         fields = ['name']
 
+
 class RecipeSerializer(serializers.ModelSerializer):
     ingredient = IngredientSerializer(many=True, read_only=True, source='ingredient_set')
     class Meta:
         model = Recipe
         fields = ['name','link','ingredient']
-"""
-@after_response.enable
-def writeFile(filer):        
-"""
 
-
-
-from django.template import loader
-from django.http import HttpResponse
 
 class ResponseThen(Response):
     def __init__(self, data, then_callback, **kwargs):
