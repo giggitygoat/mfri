@@ -29,9 +29,7 @@ from rest_framework import routers, serializers, viewsets
 from threading import Thread
 from rest_framework import status
 from django.template import loader
-from django.http import HttpResponse
-
-
+from django.http import HttpResponse, JsonResponse
 
 
 class IngredientSerializer(serializers.ModelSerializer):
@@ -83,7 +81,7 @@ def p4Alarm(request):
             #sendNoti.start()
             def sendDataToMobile():
                 repViews.send_to_token(request.POST['alarm'])
-
+                print("hej")
             return ResponseThen(request.POST['alarm'],sendDataToMobile,status=status.HTTP_200_OK)
 
         if 'token' in request.POST:
