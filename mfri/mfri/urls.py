@@ -32,7 +32,7 @@ import threading
 from rest_framework import status
 from django.template import loader
 from django.http import HttpResponse, JsonResponse
-
+from django.core.mail import mail_admins
 
 
 
