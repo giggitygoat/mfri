@@ -95,8 +95,8 @@ def sendDataToMobile(data, timestamp):
 
 @csrf_exempt
 def p4Alarm(request):
-    if request.method == 'POST':
-        timeIs=time.time()
+    timeIs=time.time()
+    if request.method == 'POST':    
         if 'file' in request.FILES:   
             print("File save | START:", (time.time()-timeIs)*1000)
             filer = request.FILES['file']
