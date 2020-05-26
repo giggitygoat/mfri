@@ -89,9 +89,8 @@ class ResponseThen(Response):
 
 @postpone
 def sendDataToMobile(data, timestamp):
-    print("Send data to mobile | START: ", time.time()-timeIs)
     repViews.send_to_token(data,timestamp)
-    print("Send data to mobile | END: ", time.time()-timeIs)
+    
 
 
 @csrf_exempt
