@@ -27,7 +27,7 @@ from rest_framework.response import Response
 from rest_framework import routers, serializers, viewsets
 from rest_framework.renderers import JSONRenderer
 import atexit
-import Queue
+import queue
 import threading
 from rest_framework import status
 from django.template import loader
@@ -53,7 +53,7 @@ def postpone(func):
         _queue.put((func, args, kwargs))
     return decorator
 
-_queue = Queue.Queue()
+_queue = queue.queue()
 _thread = threading.Thread(target=_worker)
 _thread.daemon = True
 _thread.start()
