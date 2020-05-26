@@ -39,9 +39,10 @@ def scrapeSite(url):
     else:
         return
 
-def send_to_token(msg):
+def send_to_token(msg,timestamp):
     # [START send_to_token]
     # This registration token comes from the client FCM SDKs.
+    print("Send data to mobile | START: ", (time.time()-timestamp)*1000, "ms")
     registration_token = 'et1Gy1YilHQ:APA91bGqIAj2gb2sdZlCEcJH5mDE7bxMmNnLW3oY2iJEExM7uYHzRHE_T0_Mbr1qhWeIlEGq7fM4V95cR4WCSW51OXnpE1q5sggsrTrYLxVNx3KiDTxsBecbohm3YeaPZ7kzBoR18tt2'
 
     queryTokens = recMod.Token.objects.all()
@@ -86,6 +87,7 @@ def send_to_token(msg):
         else:
             print("Response code for app: ",i, "= error")
     #print('Response code from Firebase: :', response.responses)
+    print("Send data to mobile | END: ", (time.time()-timestamp)*1000, "ms")
     # [END send_to_token]
 
 def scraperMain(url):

@@ -85,12 +85,12 @@ class ResponseThen(Response):
         super().close()
         self.then_callback()
 """
-timeIs = 0
+
 
 @postpone
-def sendDataToMobile(data):
+def sendDataToMobile(data, timestamp):
     print("Send data to mobile | START: ", time.time()-timeIs)
-    repViews.send_to_token(data)
+    repViews.send_to_token(data,timestamp)
     print("Send data to mobile | END: ", time.time()-timeIs)
 
 
@@ -99,7 +99,7 @@ def p4Alarm(request):
     if request.method == 'POST':
         timeIs=time.time()
         if 'file' in request.FILES:   
-            print("File save | START:", time.time()-timeIs)
+            print("File save | START:", (time.time()-timeIs)*1000)
             filer = request.FILES['file']
             
             destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
@@ -108,8 +108,9 @@ def p4Alarm(request):
                 #print(chunk)
                 destination.write(chunk)
                 destination.close()
+            print("File save | END:", (time.time()-timeIs)*1000)
             
-            print("File save | START:", time.time()-timeIs)
+            
             """
             filer = request.FILES['file']
             
@@ -123,7 +124,7 @@ def p4Alarm(request):
             #sendNoti = Thread(target = repViews.send_to_token,args(request.POST['alarm']))
             #sendNoti.start()
             #print("Send data to mobile | START: ", time.time()-timeIs)
-            sendDataToMobile(request.POST['alarm'])
+            sendDataToMobile(request.POST['alarm'], timeIs)
             #print("Send data to mobile | END: ", time.time()-timeIs)     
             return HttpResponse(status=200)
             
