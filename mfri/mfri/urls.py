@@ -81,10 +81,15 @@ def p4Alarm(request):
             #sendNoti.start()
             def sendDataToMobile():
                 repViews.send_to_token(request.POST['alarm'])
-                print("hej")
+                
+            response = Response(
+            {"detail": "Den var okay! godt klaret jeg er stolt af dig!"},
+            content_type="application/json",
+            status=status.HTTP_200_OK)
+        
             response.accepted_renderer = JSONRenderer()
             return ResponseThen(response,sendDataToMobile,status=status.HTTP_200_OK)
-            return JsonResponse(status=status.HTTP_200_OK)
+            
         if 'token' in request.POST:
             tok = Token(identi=request.POST['token'])
             tok.save()
