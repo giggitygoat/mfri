@@ -26,11 +26,42 @@ from django.conf.urls.static import static
 from rest_framework.response import Response
 from rest_framework import routers, serializers, viewsets
 from rest_framework.renderers import JSONRenderer
-from threading import Thread
+import atexit
+import Queue
+import threading
 from rest_framework import status
 from django.template import loader
 from django.http import HttpResponse, JsonResponse
 
+
+
+
+def _worker():
+    while True:
+        func, args, kwargs = _queue.get()
+        try:
+            func(*args, **kwargs)
+        except:
+            import traceback
+            details = traceback.format_exc()
+            mail_admins('Background process exception', details)
+        finally:
+            _queue.task_done()  # so we can join at exit
+
+def postpone(func):
+    def decorator(*args, **kwargs):
+        _queue.put((func, args, kwargs))
+    return decorator
+
+_queue = Queue.Queue()
+_thread = threading.Thread(target=_worker)
+_thread.daemon = True
+_thread.start()
+
+def _cleanup():
+    _queue.join()   # so we don't exit too soon
+
+atexit.register(_cleanup)
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,7 +75,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ['name','link','ingredient']
 
-
+"""
 class ResponseThen(Response):
     def __init__(self, data, then_callback, **kwargs):
         super().__init__(data, **kwargs)
@@ -53,7 +84,10 @@ class ResponseThen(Response):
     def close(self):
         super().close()
         self.then_callback()
-        
+"""
+@postpone
+def sendDataToMobile(data):
+    repViews.send_to_token(data)
 
 
 @csrf_exempt
@@ -79,10 +113,10 @@ def p4Alarm(request):
         if 'alarm' in request.POST:
             #sendNoti = Thread(target = repViews.send_to_token,args(request.POST['alarm']))
             #sendNoti.start()
-            def sendDataToMobile():
-                repViews.send_to_token(request.POST['alarm'])
+            
+            sendDataToMobile(request.POST['alarm'])
                  
-            return ResponseThen(JsonResponse([{"Execution":"ok"}],safe=False),sendDataToMobile,status=status.HTTP_200_OK)
+            return ResponseThen(JsonRes,sendDataToMobile,status=status.HTTP_200_OK)
             
         if 'token' in request.POST:
             tok = Token(identi=request.POST['token'])
