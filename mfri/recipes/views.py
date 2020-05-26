@@ -38,7 +38,7 @@ def scrapeSite(url):
         return res.content
     else:
         return
-@after_response.enable
+
 def send_to_token(msg):
     # [START send_to_token]
     # This registration token comes from the client FCM SDKs.
