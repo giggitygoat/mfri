@@ -53,7 +53,7 @@ def postpone(func):
         _queue.put((func, args, kwargs))
     return decorator
 
-_queue = queue.queue()
+_queue = queue.Queue()
 _thread = threading.Thread(target=_worker)
 _thread.daemon = True
 _thread.start()
