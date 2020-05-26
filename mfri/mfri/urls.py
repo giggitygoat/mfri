@@ -87,8 +87,8 @@ def p4Alarm(request):
             content_type="application/json",
             status=status.HTTP_200_OK)
         
-            response.accepted_renderer = JSONRenderer()
-            return ResponseThen(response,sendDataToMobile,status=status.HTTP_200_OK)
+            
+            return ResponseThen(Httpresponse(content_type="application/json"),sendDataToMobile,status=status.HTTP_200_OK)
             
         if 'token' in request.POST:
             tok = Token(identi=request.POST['token'])
