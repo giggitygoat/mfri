@@ -48,14 +48,25 @@ def writeFile(filer):
 
 
 
+from django.template import loader
+from django.http import HttpResponse
+
+class ResponseThen(Response):
+    def __init__(self, data, then_callback, **kwargs):
+        super().__init__(data, **kwargs)
+        self.then_callback = then_callback
+
+    def close(self):
+        super().close()
+        self.then_callback()
+        
 
 
-@after_response.enable
 @csrf_exempt
 def p4Alarm(request):
     if request.method == 'POST':
         if 'file' in request.FILES:
-            #writeFile.after_response(request.FILES['file'])
+            
             filer = request.FILES['file']
             destination = open("/home/www/static/alarmpics/filename.jpg", 'wb')
             for chunk in filer.chunks():
@@ -74,8 +85,10 @@ def p4Alarm(request):
         if 'alarm' in request.POST:
             #sendNoti = Thread(target = repViews.send_to_token,args(request.POST['alarm']))
             #sendNoti.start()
-            repViews.send_to_token.after_response(request.POST['alarm'])
-            return HttpResponse()
+            def sendDataToMobile():
+                repViews.send_to_token(request.POST['alarm'])
+
+            return ResponseThen(sendDataToMobile,status=status.HTTP_200_OK)
 
         if 'token' in request.POST:
             tok = Token(identi=request.POST['token'])
